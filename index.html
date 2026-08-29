@@ -4,14 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title> acchaww </title>
+<title>For You, Always 🌷</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
 /* =========================================================
-   RESET
+   RESET & FOUNDATION
 ========================================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -22,152 +24,125 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
-    overflow-x: hidden;
-    background: #f8ebe5;
-    color: #5d4541;
-    font-family: Georgia, "Times New Roman", serif;
+:root {
+    --pink: #e497a7;
+    --pink-dark: #b86577;
+    --pink-soft: #f7d6dc;
+    --rose-glow: rgba(228, 151, 167, 0.35);
+    
+    --cream: #fffaf7;
+    --beige: #f3e6de;
+    --brown: #4d3330;
+    --brown-soft: #7c5e59;
+    --gold: #d4a373;
+
+    --glass-bg: rgba(255, 255, 255, 0.62);
+    --glass-border: rgba(255, 255, 255, 0.85);
+    --shadow-soft: 0 30px 80px rgba(93, 56, 52, 0.10);
+    --shadow-hover: 0 40px 100px rgba(184, 101, 119, 0.22);
 }
 
-button,
-input {
-    font: inherit;
+body {
+    overflow-x: hidden;
+    background: #fdf5f2;
+    color: var(--brown);
+    font-family: "Cormorant Garamond", Georgia, serif;
+    position: relative;
+    selection-background-color: var(--pink-soft);
+}
+
+::selection {
+    background: var(--pink-soft);
+    color: var(--brown);
+}
+
+button, input {
+    font-family: inherit;
 }
 
 button {
     cursor: pointer;
+    border: none;
+    outline: none;
 }
 
-
 /* =========================================================
-   VARIABLES
+   AMBIENT BACKGROUND & ATMOSPHERE
 ========================================================= */
-
-:root {
-    --pink: #e9aab7;
-    --pink-dark: #bd7183;
-    --pink-soft: #f5ccd4;
-
-    --cream: #fff8f1;
-    --beige: #ead8ca;
-    --brown: #634945;
-    --brown-soft: #856b66;
-
-    --glass: rgba(255,255,255,.42);
-    --border: rgba(255,255,255,.72);
-}
-
-
-/* =========================================================
-   BACKGROUND
-========================================================= */
-
 body::before {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: -5;
-
     background:
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(255,255,255,.85),
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 85% 70%,
-            rgba(237,174,190,.22),
-            transparent 28%
-        ),
-        linear-gradient(
-            135deg,
-            #fff6f3,
-            #f7e4de 45%,
-            #efdcd1
-        );
+        radial-gradient(circle at 10% 15%, rgba(255, 235, 238, 0.9), transparent 40%),
+        radial-gradient(circle at 88% 30%, rgba(243, 206, 214, 0.45), transparent 45%),
+        radial-gradient(circle at 45% 85%, rgba(247, 214, 220, 0.4), transparent 50%),
+        linear-gradient(145deg, #fff9f6, #fbf0ea 50%, #f4e2d8);
+    animation: ambientShift 22s ease-in-out infinite alternate;
 }
 
+@keyframes ambientShift {
+    0% { filter: hue-rotate(0deg) brightness(1); }
+    100% { filter: hue-rotate(8deg) brightness(1.03); }
+}
 
-/* subtle paper grain */
-
+/* Paper noise texture */
 body::after {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 999;
-
-    opacity: .035;
-
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    z-index: 9999;
+    opacity: 0.032;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-
 /* =========================================================
-   PETALS
+   FALLING PETALS & SPARKLES
 ========================================================= */
-
-.petals {
+.petals-container {
     position: fixed;
     inset: 0;
     pointer-events: none;
     overflow: hidden;
-    z-index: 50;
+    z-index: 40;
 }
 
 .petal {
     position: absolute;
-    top: -30px;
-
-    width: 9px;
-    height: 15px;
-
-    border-radius: 80% 20% 80% 20%;
-
-    background: rgba(213,127,148,.35);
-
-    animation:
-        fall linear infinite,
-        sway ease-in-out infinite;
+    top: -40px;
+    width: 14px;
+    height: 20px;
+    background: radial-gradient(circle at 30% 30%, #fce2e8, #e599aa 85%);
+    border-radius: 80% 15% 80% 15%;
+    filter: drop-shadow(0 4px 6px rgba(184, 101, 119, 0.2));
+    animation: petalFall linear infinite, petalSway ease-in-out infinite;
+    transform-origin: center;
 }
 
-@keyframes fall {
-    from {
-        transform: translateY(-50px) rotate(0deg);
-    }
-
-    to {
-        transform: translateY(110vh) rotate(360deg);
-    }
+@keyframes petalFall {
+    0% { transform: translateY(-40px) rotate(0deg) rotateY(0deg); }
+    100% { transform: translateY(112vh) rotate(540deg) rotateY(360deg); }
 }
 
-@keyframes sway {
-    0%,100% {
-        margin-left: -20px;
-    }
-
-    50% {
-        margin-left: 25px;
-    }
+@keyframes petalSway {
+    0%, 100% { margin-left: -30px; }
+    50% { margin-left: 35px; }
 }
-
 
 /* =========================================================
-   COMMON
+   COMMON LAYOUT & UTILITIES
 ========================================================= */
-
 section {
     position: relative;
     width: 100%;
     min-height: 100vh;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    padding: 80px 7vw;
+    padding: 90px 7vw;
 }
 
 .center {
@@ -179,417 +154,355 @@ section {
 }
 
 .eyebrow {
-    font-size: .72rem;
-    letter-spacing: .28em;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: #a17e78;
-    margin-bottom: 20px;
+    color: var(--pink-dark);
+    margin-bottom: 22px;
+    opacity: 0.9;
 }
 
 .scroll-note {
-    margin-top: 35px;
-
-    font-size: .85rem;
-    letter-spacing: .18em;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin-top: 40px;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
-
-    color: rgba(93,69,65,.58);
-
-    animation: breathe 2.5s ease-in-out infinite;
+    color: var(--brown-soft);
+    animation: breathe 2.8s ease-in-out infinite;
 }
 
 @keyframes breathe {
-    0%,100% {
-        opacity: .35;
-        transform: translateY(0);
-    }
-
-    50% {
-        opacity: .85;
-        transform: translateY(7px);
-    }
+    0%, 100% { opacity: 0.35; transform: translateY(0); }
+    50% { opacity: 0.9; transform: translateY(8px); }
 }
 
-
 /* =========================================================
-   REVEAL ANIMATION
+   CINEMATIC REVEAL ANIMATIONS
 ========================================================= */
-
 .reveal {
     opacity: 0;
-    transform:
-        translateY(80px)
-        scale(.96);
-
-    filter: blur(12px);
-
+    transform: translateY(60px) scale(0.97);
+    filter: blur(14px);
     transition:
-        opacity 1.2s cubic-bezier(.2,.7,.2,1),
-        transform 1.3s cubic-bezier(.2,.7,.2,1),
-        filter 1.3s ease;
+        opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
 }
 
 .reveal.show {
     opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
+    transform: translateY(0) scale(1);
     filter: blur(0);
 }
 
-
 /* =========================================================
-   QUIZ
+   QUIZ & CARDS
 ========================================================= */
-
 .quiz {
     min-height: 100vh;
 }
 
 .quiz-card {
-    width: min(1000px, 94vw);
-
-    padding: 35px 30px 45px;
-
+    width: min(880px, 92vw);
+    padding: 55px 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 40px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 245, 242, 0.45));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-soft), inset 0 2px 2px rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    position: relative;
+    overflow: hidden;
+}
 
-    border-radius: 38px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.68),
-            rgba(255,241,236,.42)
-        );
-
-    border: 1px solid var(--border);
-
-    box-shadow:
-        0 40px 100px rgba(94,64,58,.13),
-        inset 0 1px 0 rgba(255,255,255,.9);
-
-    backdrop-filter: blur(18px);
+.quiz-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(247, 214, 220, 0.35), transparent 65%);
+    pointer-events: none;
 }
 
 .quiz-image {
-    width: min(780px, 88vw);
-    height: min(58vh, 620px);
-
+    width: min(720px, 86vw);
+    height: min(52vh, 520px);
     object-fit: contain;
-
-    border-radius: 25px;
-
-    filter:
-        drop-shadow(
-            0 30px 45px rgba(86,54,50,.18)
-        );
-
+    border-radius: 28px;
+    filter: drop-shadow(0 25px 40px rgba(93, 56, 52, 0.16));
     margin-bottom: 35px;
+    transition: transform 0.5s ease;
+}
+
+.quiz-image:hover {
+    transform: scale(1.02);
 }
 
 .quiz-title {
-    font-size: clamp(2.5rem, 6vw, 5.5rem);
-    line-height: .95;
-
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.1;
     color: var(--brown);
-
-    margin-bottom: 24px;
+    margin-bottom: 18px;
 }
 
 .question {
-    font-size: clamp(1.1rem, 2vw, 1.45rem);
-
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    font-style: italic;
     color: var(--brown-soft);
-
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .answer {
-    width: min(420px, 82vw);
-
-    padding: 16px 22px;
-
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    width: min(380px, 85vw);
+    padding: 18px 26px;
+    font-size: 1.05rem;
     border-radius: 999px;
-
-    border: 1px solid rgba(126,88,82,.18);
-
-    background: rgba(255,255,255,.72);
-
+    border: 1.5px solid rgba(184, 101, 119, 0.25);
+    background: rgba(255, 255, 255, 0.85);
     outline: none;
-
     text-align: center;
-
     color: var(--brown);
-
-    box-shadow:
-        0 10px 30px rgba(100,65,60,.07);
-
-    transition: .3s ease;
+    box-shadow: 0 10px 30px rgba(119, 74, 69, 0.06);
+    transition: all 0.35s ease;
 }
 
 .answer:focus {
     transform: translateY(-2px);
-
-    border-color: rgba(190,113,131,.5);
-
-    box-shadow:
-        0 15px 35px rgba(180,110,130,.14);
+    border-color: var(--pink-dark);
+    background: #ffffff;
+    box-shadow: 0 15px 40px var(--rose-glow);
 }
 
 .btn {
-    margin-top: 17px;
-
-    padding: 14px 32px;
-
-    border: 1px solid rgba(255,255,255,.7);
-
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    margin-top: 22px;
+    padding: 16px 38px;
     border-radius: 999px;
+    background: linear-gradient(135deg, #e59caa, #c67487);
+    color: #ffffff;
+    box-shadow: 0 14px 35px rgba(198, 116, 135, 0.32);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
 
-    background:
-        linear-gradient(
-            135deg,
-            #e4a0ae,
-            #c98294
-        );
-
-    color: white;
-
-    box-shadow:
-        0 14px 35px rgba(177,96,119,.22);
-
-    transition:
-        transform .3s ease,
-        box-shadow .3s ease;
+.btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
 .btn:hover {
-    transform: translateY(-4px);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(198, 116, 135, 0.42);
+}
 
-    box-shadow:
-        0 20px 45px rgba(177,96,119,.28);
+.btn:hover::after {
+    transform: translateX(100%);
+}
+
+.btn:active {
+    transform: translateY(-1px);
 }
 
 .error {
-    min-height: 22px;
-
-    margin-top: 13px;
-
-    color: #b36876;
-
-    font-size: .9rem;
+    min-height: 24px;
+    margin-top: 15px;
+    color: #c44f65;
+    font-size: 0.95rem;
+    font-style: italic;
+    animation: shake 0.35s ease-in-out;
 }
 
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
 
 /* =========================================================
-   WELCOME
+   WELCOME SCREEN
 ========================================================= */
-
 .welcome {
     flex-direction: column;
-
     min-height: 100vh;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(255,255,255,.65),
-            transparent 55%
-        );
 }
 
 .welcome-image {
-    width: min(1050px, 94vw);
-    max-height: 68vh;
-
+    width: min(920px, 92vw);
+    max-height: 64vh;
     object-fit: contain;
+    border-radius: 34px;
+    filter: drop-shadow(0 35px 65px rgba(88, 51, 47, 0.22));
+    transition: transform 0.6s ease;
+}
 
-    border-radius: 32px;
-
-    filter:
-        drop-shadow(
-            0 40px 70px rgba(90,57,53,.20)
-        );
+.welcome-image:hover {
+    transform: scale(1.02);
 }
 
 .welcome-line {
-    margin-top: 35px;
-
-    font-size: clamp(1.7rem, 4vw, 3.5rem);
-
-    color: #714e4a;
+    margin-top: 38px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(2rem, 4.5vw, 3.8rem);
+    color: var(--brown);
+    text-align: center;
 }
-
 
 /* =========================================================
-   STORY INTRO
+   POETRY & STORY SECTIONS
 ========================================================= */
-
-.story {
-    position: relative;
-}
-
 .story-intro {
-    min-height: 145vh;
-
+    min-height: 120vh;
     flex-direction: column;
 }
 
 .story-heading {
-    font-size: clamp(3rem, 8vw, 7rem);
-
-    line-height: .9;
-
-    color: #624643;
-
-    text-wrap: balance;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 8.5vw, 7.5rem);
+    line-height: 1.05;
+    color: var(--brown);
+    font-weight: 600;
 }
 
 .story-heading span {
     display: block;
-
     font-style: italic;
-
-    color: #bd7788;
+    font-weight: 400;
+    color: var(--pink-dark);
 }
 
 .story-sub {
-    margin-top: 35px;
-
-    font-size: 1rem;
-
-    letter-spacing: .12em;
-
-    color: #967773;
+    margin-top: 30px;
+    font-size: 1.25rem;
+    font-style: italic;
+    letter-spacing: 0.08em;
+    color: var(--brown-soft);
 }
 
-
-/* =========================================================
-   POEM
-========================================================= */
-
 .poem-section {
-    min-height: 120vh;
+    min-height: 125vh;
 }
 
 .poem-box {
-    width: min(750px, 90vw);
-
+    width: min(840px, 92vw);
     text-align: center;
-
-    padding: 40px;
-
+    padding: 60px 45px;
     position: relative;
+    border-radius: 40px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(255, 246, 244, 0.4));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(20px);
 }
 
 .poem-box::before,
 .poem-box::after {
-    content: "✦";
-
     position: absolute;
-
-    color: rgba(190,113,132,.5);
-
-    font-size: 1.2rem;
+    color: var(--pink);
+    font-size: 2.2rem;
+    opacity: 0.6;
+    font-family: 'Playfair Display', serif;
 }
 
 .poem-box::before {
-    top: 0;
-    left: 10%;
+    content: "❝";
+    top: 20px;
+    left: 30px;
 }
 
 .poem-box::after {
-    bottom: 0;
-    right: 10%;
+    content: "❞";
+    bottom: 10px;
+    right: 30px;
 }
 
 .poem-text {
     white-space: pre-line;
-
-    font-size: clamp(1.2rem, 2.2vw, 1.55rem);
-
-    line-height: 2.15;
-
-    color: #6e5550;
+    font-size: clamp(1.3rem, 2.3vw, 1.7rem);
+    line-height: 2.2;
+    color: var(--brown);
+    font-style: italic;
 }
 
-
 /* =========================================================
-   CHECKPOINT
+   CHECKPOINTS & AUDIO
 ========================================================= */
-
 .checkpoint {
     min-height: 110vh;
 }
 
 .checkpoint-card {
-    width: min(650px, 90vw);
-
-    padding: 55px 35px;
-
+    width: min(680px, 90vw);
+    padding: 60px 40px;
     text-align: center;
-
-    border-radius: 38px;
-
-    background:
-        rgba(255,255,255,.45);
-
-    border: 1px solid rgba(255,255,255,.8);
-
-    box-shadow:
-        0 35px 90px rgba(95,61,56,.12);
-
-    backdrop-filter: blur(20px);
+    border-radius: 40px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 242, 238, 0.45));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(22px);
 }
 
 .checkpoint-card h2 {
-    font-size: clamp(2.2rem, 5vw, 4rem);
-
-    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    font-style: italic;
+    color: var(--brown);
+    margin-bottom: 12px;
 }
 
 .checkpoint-card p {
-    color: #90736e;
-
-    margin-bottom: 20px;
+    font-size: 1.25rem;
+    color: var(--brown-soft);
+    font-style: italic;
+    margin-bottom: 25px;
 }
 
 .status {
-    min-height: 20px;
-
-    margin-top: 17px;
-
-    font-size: .85rem;
-
-    color: #98736f;
+    min-height: 22px;
+    margin-top: 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+    color: var(--pink-dark);
 }
 
-
 /* =========================================================
-   TULIP GARDEN
+   BLOOMING TULIP GARDEN
 ========================================================= */
-
 .tulip-section {
     min-height: 140vh;
-
     overflow: hidden;
+    position: relative;
 }
 
 .tulip-field {
     position: absolute;
-
     inset: auto 0 0;
-
-    height: 55%;
-
+    height: 60%;
     pointer-events: none;
-
     opacity: 0;
-
-    transition: opacity 3s ease;
+    transition: opacity 2.5s ease;
 }
 
 .tulip-field.active {
@@ -598,811 +511,407 @@ section {
 
 .tulip {
     position: absolute;
-
-    bottom: -20px;
-
-    width: 3px;
-    height: 150px;
-
-    background: #729078;
-
+    bottom: -15px;
+    width: 4px;
+    height: 170px;
+    background: linear-gradient(to top, #5c7e63, #7a9c81);
     border-radius: 99px;
-
-    transform-origin: bottom;
-
+    transform-origin: bottom center;
     transform: scaleY(0);
-
-    transition:
-        transform 2s cubic-bezier(.2,.8,.2,1);
+    transition: transform 2.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .tulip-field.active .tulip {
     transform: scaleY(1);
+    animation: tulipWind 4s ease-in-out infinite alternate;
+}
+
+@keyframes tulipWind {
+    0% { transform: scaleY(1) rotate(0deg); }
+    100% { transform: scaleY(1) rotate(4deg); }
 }
 
 .tulip::before {
     content: "";
-
     position: absolute;
-
-    width: 65px;
-    height: 65px;
-
+    width: 68px;
+    height: 72px;
     left: 50%;
-    top: -45px;
-
+    top: -55px;
     transform: translateX(-50%);
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            #efb2bf 0 32%,
-            #d8879b 33% 100%
-        );
-
-    border-radius:
-        50% 50% 45% 45% /
-        70% 70% 35% 35%;
-
-    box-shadow:
-        inset 0 -8px 15px rgba(139,72,91,.12);
+    background: radial-gradient(ellipse at 35% 30%, #ffd0db 0%, #e991a5 50%, #c8637a 100%);
+    border-radius: 50% 50% 45% 45% / 70% 70% 35% 35%;
+    box-shadow: inset 0 -8px 18px rgba(145, 59, 81, 0.25), 0 10px 20px rgba(184, 101, 119, 0.2);
 }
 
 .tulip::after {
     content: "";
-
     position: absolute;
-
-    width: 65px;
-    height: 65px;
-
+    width: 68px;
+    height: 72px;
     left: 50%;
-    top: -42px;
-
+    top: -52px;
     transform: translateX(-50%) rotate(18deg);
-
     border-radius: 50%;
-
-    border-left: 7px solid rgba(255,255,255,.35);
-
-    opacity: .6;
+    border-left: 8px solid rgba(255, 255, 255, 0.45);
+    opacity: 0.7;
 }
 
-
 /* =========================================================
-   IMAGE MOMENTS
+   MEDIA SHOWCASES (IMAGES & VIDEO)
 ========================================================= */
-
 .image-section {
     min-height: 130vh;
-
     flex-direction: column;
 }
 
 .story-image {
-    width: min(1000px, 92vw);
-    max-height: 76vh;
-
+    width: min(960px, 92vw);
+    max-height: 74vh;
     object-fit: contain;
+    border-radius: 32px;
+    box-shadow: 0 45px 100px rgba(78, 47, 43, 0.18);
+    transition: transform 0.6s ease;
+}
 
-    border-radius: 30px;
-
-    box-shadow:
-        0 45px 110px rgba(75,48,44,.19);
+.story-image:hover {
+    transform: scale(1.015);
 }
 
 .image-caption {
     margin-top: 38px;
-
-    font-size: clamp(2rem, 5vw, 4rem);
-
-    color: #684946;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    font-style: italic;
+    color: var(--brown);
 }
 
-
-/* =========================================================
-   VIDEO
-========================================================= */
-
 .video-section {
-    min-height: 135vh;
-
+    min-height: 140vh;
     flex-direction: column;
 }
 
 .video-frame {
-    width: min(1000px, 92vw);
-
+    width: min(960px, 92vw);
     position: relative;
-
-    padding: 10px;
-
-    border-radius: 35px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.8),
-            rgba(235,192,198,.4)
-        );
-
-    box-shadow:
-        0 40px 100px rgba(78,51,48,.18);
+    padding: 12px;
+    border-radius: 36px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(245, 203, 211, 0.45));
+    box-shadow: 0 45px 110px rgba(78, 47, 43, 0.18);
 }
 
 .story-video {
     display: block;
-
     width: 100%;
-
     max-height: 75vh;
-
     object-fit: contain;
-
-    border-radius: 27px;
-
-    background: #332927;
+    border-radius: 28px;
+    background: #1c1514;
 }
 
 .video-note {
-    margin-top: 35px;
-
-    width: min(750px, 90vw);
-
+    margin-top: 45px;
+    width: min(780px, 90vw);
     text-align: center;
-
     white-space: pre-line;
-
-    font-size: clamp(1.15rem, 2vw, 1.45rem);
-
-    line-height: 2;
+    font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+    line-height: 2.1;
+    font-style: italic;
+    color: var(--brown);
 }
 
-
-/* =========================================================
-   GALAXY
-========================================================= */
-
 .galaxy-section {
-    min-height: 145vh;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(218,199,220,.35),
-            transparent 50%
-        );
+    min-height: 140vh;
+    background: radial-gradient(circle at center, rgba(226, 205, 229, 0.35), transparent 60%);
 }
 
 .galaxy-image {
-    width: min(1100px, 94vw);
-    max-height: 78vh;
-
+    width: min(1020px, 94vw);
+    max-height: 76vh;
     object-fit: contain;
-
-    border-radius: 32px;
-
-    box-shadow:
-        0 0 100px rgba(117,87,125,.16),
-        0 50px 110px rgba(63,45,64,.25);
+    border-radius: 34px;
+    box-shadow: 0 0 90px rgba(142, 103, 153, 0.18), 0 45px 100px rgba(66, 43, 67, 0.22);
 }
 
 .galaxy-text {
-    margin-top: 45px;
-
-    font-size: clamp(3rem, 8vw, 7rem);
-
+    margin-top: 40px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
     font-style: italic;
-
-    color: #70586d;
+    color: #694e66;
 }
-
 
 /* =========================================================
-   LAST TITLE
+   PROGRESSIVE SCROLL REVEAL PARAGRAPH
 ========================================================= */
-
-.last-title {
-    min-height: 105vh;
-
-    flex-direction: column;
-}
-
-.last-title h2 {
-    font-size: clamp(3rem, 8vw, 7rem);
-
-    line-height: .95;
-
-    color: #604541;
-}
-
-
-/* =========================================================
-   SCROLL PARAGRAPH
-========================================================= */
-
 .paragraph-section {
-    min-height: 190vh;
-
+    min-height: 230vh;
     align-items: flex-start;
-
     padding-top: 25vh;
+    position: relative;
 }
 
 .paragraph-wrap {
-    width: min(800px, 90vw);
-
+    width: min(840px, 90vw);
     margin: auto;
-
-    /*
-       IMPORTANT:
-       This section itself is allowed to appear normally.
-       The old setup could leave the entire paragraph
-       hidden because #story started with display:none.
-    */
-
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
+    padding: 60px 45px;
+    border-radius: 40px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 245, 242, 0.5));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(20px);
 }
 
 .paragraph {
-    font-size: clamp(1.25rem, 2.3vw, 1.65rem);
-
-    line-height: 2.15;
-
+    font-size: clamp(1.3rem, 2.3vw, 1.7rem);
+    line-height: 2.25;
     text-align: center;
-
-    color: #654d49;
+    color: var(--brown);
+    font-style: italic;
 }
 
 .word {
     display: inline;
-
-    /*
-       Visible even before scrolling.
-       Scrolling makes each word brighter.
-    */
-
-    opacity: .30;
-
-    filter: blur(1px);
-
-    transition:
-        opacity .35s ease,
-        filter .35s ease;
+    opacity: 0.22;
+    filter: blur(1.5px);
+    transition: opacity 0.4s ease, filter 0.4s ease, color 0.4s ease;
 }
 
 .word.lit {
     opacity: 1;
-
     filter: blur(0);
+    color: var(--brown);
+    text-shadow: 0 0 1px rgba(184, 101, 119, 0.2);
 }
-
 
 /* =========================================================
-   FINAL IMAGES
+   SORRY CLIMAX
 ========================================================= */
-
-.final-image-section {
-    min-height: 125vh;
-}
-
-.final-image {
-    width: min(1000px, 93vw);
-    max-height: 78vh;
-
-    object-fit: contain;
-
-    border-radius: 32px;
-
-    box-shadow:
-        0 50px 120px rgba(76,48,44,.22);
-}
-
-
-/* =========================================================
-   SORRY MOMENT
-========================================================= */
-
 .sorry-moment {
-    min-height: 90vh;
-
+    min-height: 95vh;
     flex-direction: column;
-
     text-align: center;
-
     overflow: hidden;
 }
 
 .sorry-content {
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
-
     width: 100%;
 }
 
 .sorry-title {
-    margin-top: 35px;
-
-    font-size: clamp(5rem, 17vw, 13rem);
-
-    line-height: .8;
-
+    font-family: 'Playfair Display', serif;
+    margin-top: 30px;
+    font-size: clamp(5.5rem, 18vw, 14rem);
+    line-height: 0.85;
     font-weight: 700;
-
-    letter-spacing: -.055em;
-
-    color: #654541;
-
-    text-shadow:
-        0 15px 40px rgba(93,65,61,.14);
-
+    letter-spacing: -0.04em;
+    color: var(--brown);
+    text-shadow: 0 15px 40px rgba(93, 56, 52, 0.15);
     opacity: 0;
-
-    transform:
-        translateY(55px)
-        scale(.78);
-
-    filter: blur(12px);
-
-    transition:
-        opacity 1.2s cubic-bezier(.2,.8,.2,1),
-        transform 1.3s cubic-bezier(.2,.8,.2,1),
-        filter 1.2s ease;
+    transform: translateY(50px) scale(0.85);
+    filter: blur(14px);
+    transition: opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1), transform 1.3s cubic-bezier(0.16, 1, 0.3, 1), filter 1.3s ease;
 }
 
 .sorry-moment .reveal.show .sorry-title {
     opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
+    transform: translateY(0) scale(1);
     filter: blur(0);
 }
 
 .prayer-hands {
-    margin-top: 60px;
-
-    font-size: clamp(4rem, 10vw, 8rem);
-
+    margin-top: 45px;
+    font-size: clamp(4.5rem, 11vw, 8.5rem);
     display: inline-block;
-
     transform-origin: center bottom;
-
     opacity: 0;
-
-    transform:
-        translateY(40px)
-        scale(.6)
-        rotate(-10deg);
-
-    filter: blur(10px);
-
-    transition:
-        opacity 1s ease .35s,
-        transform 1.2s cubic-bezier(.2,.8,.2,1) .35s,
-        filter 1s ease .35s;
+    transform: translateY(30px) scale(0.7);
+    filter: blur(8px);
+    transition: opacity 1.2s ease 0.3s, transform 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, filter 1.2s ease 0.3s;
 }
 
 .sorry-moment .reveal.show .prayer-hands {
     opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1)
-        rotate(0deg);
-
+    transform: translateY(0) scale(1);
     filter: blur(0);
-
-    animation:
-        handsBreathe 2.8s ease-in-out 1.5s infinite;
+    animation: heartPulse 3s ease-in-out 1.6s infinite;
 }
 
-@keyframes handsBreathe {
-
-    0%, 100% {
-        transform:
-            translateY(0)
-            scale(1)
-            rotate(0deg);
-    }
-
-    50% {
-        transform:
-            translateY(-10px)
-            scale(1.06)
-            rotate(2deg);
-    }
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.08) translateY(-8px); }
 }
 
 .sorry-subtitle {
     margin-top: 25px;
-
-    font-size: clamp(1rem, 2vw, 1.35rem);
-
-    letter-spacing: .16em;
-
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-
-    color: #987570;
-
-    opacity: 0;
-
-    transform: translateY(20px);
-
-    transition:
-        opacity 1s ease .7s,
-        transform 1s ease .7s;
+    color: var(--pink-dark);
+    font-weight: 500;
 }
-
-.sorry-moment .reveal.show .sorry-subtitle {
-    opacity: 1;
-
-    transform: translateY(0);
-}
-
 
 /* =========================================================
-   FINAL MESSAGE
+   FINAL CLOSING MESSAGE
 ========================================================= */
-
 .final-message-section {
     min-height: 115vh;
-
     flex-direction: column;
 }
 
 .final-message {
-    width: min(850px, 90vw);
-
-    font-size: clamp(2.5rem, 6vw, 5.5rem);
-
-    line-height: 1.05;
-
-    color: #654845;
+    font-family: 'Playfair Display', serif;
+    width: min(900px, 90vw);
+    font-size: clamp(2.8rem, 6.5vw, 5.8rem);
+    line-height: 1.15;
+    font-style: italic;
+    color: var(--brown);
 }
 
 .final-small {
     margin-top: 35px;
-
-    font-size: 2rem;
+    font-size: 2.5rem;
+    animation: gentleBob 3s ease-in-out infinite alternate;
 }
 
+@keyframes gentleBob {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-10px) rotate(8deg); }
+}
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVENESS
 ========================================================= */
-
-@media(max-width:700px) {
-
+@media(max-width: 768px) {
     section {
-        padding: 55px 20px;
+        padding: 65px 22px;
     }
-
-    .quiz-card {
-        padding: 20px 15px 35px;
-
-        border-radius: 28px;
+    .quiz-card, .poem-box, .paragraph-wrap, .checkpoint-card {
+        padding: 35px 22px;
+        border-radius: 30px;
     }
-
     .quiz-image {
-        width: 90vw;
-
-        height: 48vh;
-
-        border-radius: 20px;
+        width: 88vw;
+        height: 42vh;
     }
-
-    .quiz-title {
-        font-size: 3rem;
-    }
-
     .story-heading {
-        font-size: 4rem;
+        font-size: 3.6rem;
     }
-
-    .poem-box {
-        padding: 25px 10px;
-    }
-
-    .story-image,
-    .galaxy-image,
-    .final-image {
-        max-height: 65vh;
-
-        border-radius: 22px;
-    }
-
-    .tulip-field {
-        height: 30%;
-    }
-
-    .tulip {
-        height: 90px;
-    }
-
-    .tulip::before,
-    .tulip::after {
-        width: 45px;
-
-        height: 45px;
-    }
-
-    .tulip::before {
-        top: -32px;
-    }
-
-    .tulip::after {
-        top: -30px;
-    }
-
-    .paragraph-section {
-        min-height: 220vh;
-
-        padding-top: 18vh;
-    }
-
-    .paragraph {
-        font-size: 1.18rem;
-
+    .poem-text, .paragraph, .video-note {
+        font-size: 1.25rem;
         line-height: 2;
     }
-
-    .sorry-moment {
-        min-height: 80vh;
+    .tulip-field {
+        height: 45%;
     }
-
-    .sorry-title {
-        font-size: 5.5rem;
+    .tulip {
+        height: 110px;
     }
-
-    .prayer-hands {
-        margin-top: 45px;
-
-        font-size: 5rem;
+    .tulip::before, .tulip::after {
+        width: 48px;
+        height: 52px;
+        top: -40px;
     }
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<div class="petals" id="petals"></div>
-
+<div class="petals-container" id="petals"></div>
 
 <!-- ======================================================
-     QUIZ 1
+     QUIZ SCREEN 1
 ====================================================== -->
-
 <div id="screen1">
-
 <section class="quiz">
-
-    <div class="quiz-card">
-
-        <div class="eyebrow">
-            identification required
-        </div>
-
-        <img
-            class="quiz-image"
-            id="img1"
-            alt="tu kon h">
-
-        <h1 class="quiz-title">
-            tu kon hai be?
-        </h1>
-
-        <p class="question">
-            What's my name?
-        </p>
-
-        <input
-            id="answer1"
-            class="answer"
-            placeholder="type your answer..."
-            autocomplete="off">
-
-        <button
-            class="btn"
-            onclick="checkAnswer(1)">
-            Submit
-        </button>
-
+    <div class="quiz-card reveal show">
+        <div class="eyebrow">identification required • step 01</div>
+        <img class="quiz-image" id="img1" alt="tu kon h">
+        <h1 class="quiz-title">tu kon hai be?</h1>
+        <p class="question">What's my name?</p>
+        <input id="answer1" class="answer" placeholder="type your answer..." autocomplete="off">
+        <button class="btn" onclick="checkAnswer(1)">Submit</button>
         <p id="error1" class="error"></p>
-
     </div>
-
 </section>
-
 </div>
 
-
 <!-- ======================================================
-     QUIZ 2
+     QUIZ SCREEN 2
 ====================================================== -->
-
 <div id="screen2" class="hidden">
-
 <section class="quiz">
-
     <div class="quiz-card">
-
-        <div class="eyebrow">
-            okay... you got that one
-        </div>
-
-        <img
-            class="quiz-image"
-            id="img2"
-            alt="iska answer kar">
-
-        <h1 class="quiz-title">
-            iska answer kar.
-        </h1>
-
-        <p class="question">
-            mera naam kya h (Hint : 🐸)
-        </p>
-
-        <input
-            id="answer2"
-            class="answer"
-            placeholder="think... 🐸"
-            autocomplete="off">
-
-        <button
-            class="btn"
-            onclick="checkAnswer(2)">
-            Submit
-        </button>
-
+        <div class="eyebrow">okay... you got that one • step 02</div>
+        <img class="quiz-image" id="img2" alt="iska answer kar">
+        <h1 class="quiz-title">iska answer kar.</h1>
+        <p class="question">mera naam kya h (Hint : 🐸)</p>
+        <input id="answer2" class="answer" placeholder="think... 🐸" autocomplete="off">
+        <button class="btn" onclick="checkAnswer(2)">Submit</button>
         <p id="error2" class="error"></p>
-
     </div>
-
 </section>
-
 </div>
 
-
 <!-- ======================================================
-     QUIZ 3
+     QUIZ SCREEN 3
 ====================================================== -->
-
 <div id="screen3" class="hidden">
-
 <section class="quiz">
-
     <div class="quiz-card">
-
-        <div class="eyebrow">
-            final question
-        </div>
-
-        <img
-            class="quiz-image"
-            id="img3"
-            alt="ye to ria">
-
-        <h1 class="quiz-title">
-            ye to Ria lgri..
-        </h1>
-
-        <p class="question">
-            What name we both gave each other in the starting?
-        </p>
-
-        <input
-            id="answer3"
-            class="answer"
-            placeholder="you definitely remember..."
-            autocomplete="off">
-
-        <button
-            class="btn"
-            onclick="checkAnswer(3)">
-            Submit
-        </button>
-
+        <div class="eyebrow">final question • step 03</div>
+        <img class="quiz-image" id="img3" alt="ye to ria">
+        <h1 class="quiz-title">ye to Ria lgri..</h1>
+        <p class="question">What name we both gave each other in the starting?</p>
+        <input id="answer3" class="answer" placeholder="you definitely remember..." autocomplete="off">
+        <button class="btn" onclick="checkAnswer(3)">Submit</button>
         <p id="error3" class="error"></p>
-
     </div>
-
 </section>
-
 </div>
 
-
 <!-- ======================================================
-     WELCOME
+     WELCOME SCREEN
 ====================================================== -->
-
 <div id="screen4" class="hidden">
-
 <section class="welcome">
-
-    <div class="eyebrow">
-        access granted
-    </div>
-
-    <img
-        id="welcomeImage"
-        class="welcome-image"
-        alt="welcome">
-
-    <p class="welcome-line">
-        awieee cutu aap ho yeyeyeyeye 🥹🌷
-    </p>
-
-    <button
-        class="btn"
-        onclick="startStory()">
-        okay... continue ↓
-    </button>
-
+    <div class="eyebrow">access granted • heart unlocked</div>
+    <img id="welcomeImage" class="welcome-image" alt="welcome">
+    <p class="welcome-line">awieee cutu aap ho yeyeyeyeye 🥹🌷</p>
+    <button class="btn" onclick="startStory()">okay... enter our world ↓</button>
 </section>
-
 </div>
 
-
 <!-- ======================================================
-     STORY
+     MAIN STORY
 ====================================================== -->
-
 <div id="story" class="hidden">
 
-
 <!-- INTRO -->
-
 <section class="story-intro">
-
     <div class="reveal center">
-
-        <div class="eyebrow">
-            a little something
-        </div>
-
+        <div class="eyebrow">a little confession & promise</div>
         <h1 class="story-heading">
             hy welcome
             <span>meri betuuu</span>
         </h1>
-
-        <p class="story-sub">
-            plzzz scroll down
-        </p>
-
-        <p class="scroll-note">
-            ↓ scroll
-        </p>
-
+        <p class="story-sub">please take a slow stroll down...</p>
+        <p class="scroll-note">↓ scroll gently</p>
     </div>
-
 </section>
 
-
 <!-- FIRST POEM -->
-
 <section class="poem-section">
-
     <div class="poem-box reveal">
-
-        <div class="eyebrow">
-            before we continue...
-        </div>
-
+        <div class="eyebrow">our quantum frequency</div>
         <p class="poem-text">
-[Meeting you felt less like a coincidence and more like the multiverse correcting a glitch.
+Meeting you felt less like a coincidence and more like the multiverse correcting a glitch.
 You call us mirror galaxies; we're like two anomalies breaking physics by existing on the same frequency.
 Astral twins?
 Maybe.
@@ -1412,157 +921,69 @@ Parallel stars?
 Yes.
 Two luminous singularities defying entropy by choosing not to drift apart.
 So here’s my quantum pulse, traveling faster than reason, colliding with yours as it was always meant to.
-~~~Kalua Bandar🥀]
+
+~~~Kalua Bandar🥀
         </p>
-
     </div>
-
 </section>
-
 
 <!-- CHECKPOINT 1 -->
-
 <section class="checkpoint">
-
     <div class="checkpoint-card reveal">
-
-        <div class="eyebrow">
-            checkpoint
-        </div>
-
-        <h2>
-            wait...
-        </h2>
-
-        <p>
-            ye suna?
-        </p>
-
-        <button
-            class="btn"
-            onclick="playRia()">
-            🎵 ye suna?
-        </button>
-
-        <div
-            id="riaStatus"
-            class="status">
-            click the button...
-        </div>
-
+        <div class="eyebrow">voice & memory checkpoint</div>
+        <h2>wait...</h2>
+        <p>ye suna?</p>
+        <button class="btn" onclick="playRia()">🎵 play our melody</button>
+        <div id="riaStatus" class="status">click the button to listen...</div>
     </div>
-
 </section>
-
 
 <!-- TULIPS -->
-
 <section class="tulip-section">
-
-    <div
-        class="tulip-field"
-        id="tulips">
-
-        <div class="tulip" style="left:4%;"></div>
-        <div class="tulip" style="left:12%;"></div>
-        <div class="tulip" style="left:21%;"></div>
-        <div class="tulip" style="left:31%;"></div>
-        <div class="tulip" style="left:43%;"></div>
-        <div class="tulip" style="left:55%;"></div>
-        <div class="tulip" style="left:67%;"></div>
-        <div class="tulip" style="left:77%;"></div>
-        <div class="tulip" style="left:88%;"></div>
-        <div class="tulip" style="left:96%;"></div>
-
+    <div class="tulip-field" id="tulips">
+        <div class="tulip" style="left:4%; transition-delay: 0.1s;"></div>
+        <div class="tulip" style="left:14%; transition-delay: 0.3s;"></div>
+        <div class="tulip" style="left:24%; transition-delay: 0.2s;"></div>
+        <div class="tulip" style="left:35%; transition-delay: 0.5s;"></div>
+        <div class="tulip" style="left:46%; transition-delay: 0.15s;"></div>
+        <div class="tulip" style="left:57%; transition-delay: 0.4s;"></div>
+        <div class="tulip" style="left:68%; transition-delay: 0.25s;"></div>
+        <div class="tulip" style="left:78%; transition-delay: 0.6s;"></div>
+        <div class="tulip" style="left:88%; transition-delay: 0.35s;"></div>
+        <div class="tulip" style="left:96%; transition-delay: 0.5s;"></div>
     </div>
-
     <div class="reveal center">
-
-        <div class="eyebrow">
-            slowly...
-        </div>
-
-        <h2 class="story-heading">
-            🌷
-        </h2>
-
-        <p class="scroll-note">
-            keep going
-        </p>
-
+        <div class="eyebrow">every blossom blooms for you</div>
+        <h2 class="story-heading">🌷</h2>
+        <p class="scroll-note">keep going...</p>
     </div>
-
 </section>
-
 
 <!-- ADHURI POEM -->
-
 <section class="image-section">
-
     <div class="reveal center">
-
-        <img
-            id="adhuriImage"
-            class="story-image"
-            alt="adhuri poem">
-
-        <h2 class="image-caption">
-            ye yad h?
-        </h2>
-
-        <p class="scroll-note">
-            ↓ scroll down
-        </p>
-
+        <img id="adhuriImage" class="story-image" alt="adhuri poem">
+        <h2 class="image-caption">ye yad h?</h2>
+        <p class="scroll-note">↓ scroll down</p>
     </div>
-
 </section>
-
 
 <!-- POEM PNG -->
-
 <section class="image-section">
-
     <div class="reveal center">
-
-        <img
-            id="poemImage"
-            class="story-image"
-            alt="poem">
-
-        <h2 class="image-caption">
-            🐸🐸 yeyeyey Lesgoo
-        </h2>
-
-        <p class="scroll-note">
-            ↓ scroll down
-        </p>
-
+        <img id="poemImage" class="story-image" alt="poem">
+        <h2 class="image-caption">🐸🐸 yeyeyey Lesgoo</h2>
+        <p class="scroll-note">↓ scroll down</p>
     </div>
-
 </section>
 
-
 <!-- VIDEO -->
-
 <section class="video-section">
-
     <div class="reveal center">
-
         <div class="video-frame">
-
-            <video
-                id="ankheinVideo"
-                class="story-video"
-                controls
-                playsinline
-                preload="metadata">
-            </video>
-
+            <video id="ankheinVideo" class="story-video" controls playsinline preload="metadata"></video>
         </div>
-
         <div class="video-note">
-
 [Those eyes .....
 spill light, still night...
 tilt time sideways, wrong-right,
@@ -1593,115 +1014,50 @@ I rhyme myself into their spell,
 can’t tell heaven... can’t tell hell...
 just drifting, dreaming, beautifully stuck,
 in eyes that rhyme...✨👁️]
-
         </div>
-
-        <p class="scroll-note">
-            ↓ scroll down
-        </p>
-
+        <p class="scroll-note">↓ scroll down</p>
     </div>
-
 </section>
-
 
 <!-- GALAXY -->
-
 <section class="galaxy-section">
-
     <div class="reveal center">
-
-        <img
-            id="galaxyImage"
-            class="galaxy-image"
-            alt="mirror galaxy">
-
-        <p class="galaxy-text">
-            ummmmm.....
-        </p>
-
+        <img id="galaxyImage" class="galaxy-image" alt="mirror galaxy">
+        <p class="galaxy-text">ummmmm.....</p>
     </div>
-
 </section>
-
 
 <!-- CHECKPOINT 2 -->
-
 <section class="checkpoint">
-
     <div class="checkpoint-card reveal">
-
-        <div class="eyebrow">
-            another checkpoint
-        </div>
-
-        <h2>
-            yad hai?
-        </h2>
-
-        <p>
-            okay... this one too.
-        </p>
-
-        <button
-            class="btn"
-            onclick="playYadHai()">
-            🎵 play this
-        </button>
-
-        <div
-            id="yadStatus"
-            class="status">
-            click when you're ready...
-        </div>
-
+        <div class="eyebrow">another piece of my heart</div>
+        <h2>yad hai?</h2>
+        <p>okay... this one too.</p>
+        <button class="btn" onclick="playYadHai()">🎵 listen to this</button>
+        <div id="yadStatus" class="status">click when you're ready...</div>
     </div>
-
 </section>
-
 
 <!-- LAST TITLE -->
-
 <section class="last-title">
-
     <div class="reveal center">
-
-        <div class="eyebrow">
-            almost there
-        </div>
-
-        <h2>
-            ok this one's last
-        </h2>
-
-        <p class="scroll-note">
-            ↓ keep scrolling
-        </p>
-
+        <div class="eyebrow">from the deepest corner</div>
+        <h2 style="font-family:'Playfair Display',serif; font-size:clamp(3rem,8vw,6.5rem); font-style:italic;">ok this one's last</h2>
+        <p class="scroll-note">↓ please read slowly</p>
     </div>
-
 </section>
 
-
-<!-- ======================================================
-     APOLOGY PARAGRAPH
-====================================================== -->
-
+<!-- APOLOGY PARAGRAPH (SCROLL ILLUMINATED) -->
 <section class="paragraph-section">
-
     <div class="paragraph-wrap">
-
-        <div
-            id="paragraph"
-            class="paragraph">
-
+        <div id="paragraph" class="paragraph">
 I do not know if an apology can travel backwards, find the exact evening where everything felt a little heavier because of me, and quietly change what I should have done differently. I wish it could. I wish I could take every moment in which you needed a hand and I gave you distance instead, every silence where you deserved comfort and received nothing from me, every time you must have wondered why the person who was supposed to understand you suddenly became another reason for you to feel alone. If regret could rebuild things, perhaps I would have finished the whole house by now. Unfortunately, I was gifted with regret instead of magic, which is probably the universe's funniest way of teaching an idiot a lesson.
 
 I know I hurt you. Not in some beautiful, poetic way either. I hurt you in the most ordinary and painful way possible: by not being there when being there mattered. I left empty spaces where my presence should have been, and I know no amount of explaining can make those spaces disappear. You should not have had to ask for the kind of care that should have come naturally. You should not have had to wonder whether you mattered to me. And you definitely should not have had to carry certain nights alone while I was somewhere else, living as though time would politely wait for me to grow a brain. It did not. Neither did those moments.
 
-There is something else I have understood much later than I should have. Distance never taught my heart another language. I may have been far away, I may have taken time, I may have looked like I was learning how to live without looking back, but somehow every road kept bending toward the same name without ever saying it aloud. I wrote things I never sent. I found myself staring at old traces of you for far longer than any emotionally stable person should admit. I searched for little pieces of your existence from a distance, then pretended I was merely curious. Absolutely convincing performance. Oscar committee, please contact me.  But perhaps the funniest proof was that even when I was not beside you, I was still writing toward you. Some people move on by replacing what they had. I apparently chose the much less intelligent method of carrying it quietly and pretending it weighed nothing.
+There is something else I have understood much later than I should have. Distance never taught my heart another language. I may have been far away, I may have taken time, I may have looked like I was learning how to live without looking back, but somehow every road kept bending toward the same name without ever saying it aloud. I wrote things I never sent. I found myself staring at old traces of you for far longer than any emotionally stable person should admit. I searched for little pieces of your existence from a distance, then pretended I was merely curious. Absolutely convincing performance. Oscar committee, please contact me. But perhaps the funniest proof was that even when I was not beside you, I was still writing toward you. Some people move on by replacing what they had. I apparently chose the much less intelligent method of carrying it quietly and pretending it weighed nothing.
 
-And maybe that is why I cannot make myself understand the word “give up.” It sounds simple when spoken by someone standing outside the feeling. For me, it feels like being asked to stop recognising a song simply because it ended too early. I can accept anger. I can accept distance. I can accept that some wounds need time before they trust a hand again. What I cannot promise is that I will suddenly stop loving you just because things became difficult. I do not want to make a dramatic promise that I will never make another mistake, because that would be another lie dressed up as devotion. I am still human, unfortunately.  What I can promise is that I will learn from the ones I have already made. I will listen instead of assuming. I will speak instead of disappearing. I will ask when I am unsure. I will stay present when things become uncomfortable instead of choosing silence because it is easier for me.
+And maybe that is why I cannot make myself understand the word “give up.” It sounds simple when spoken by someone standing outside the feeling. For me, it feels like being asked to stop recognising a song simply because it ended too early. I can accept anger. I can accept distance. I can accept that some wounds need time before they trust a hand again. What I cannot promise is that I will suddenly stop loving you just because things became difficult. I do not want to make a dramatic promise that I will never make another mistake, because that would be another lie dressed up as devotion. I am still human, unfortunately. What I can promise is that I will learn from the ones I have already made. I will listen instead of assuming. I will speak instead of disappearing. I will ask when I am unsure. I will stay present when things become uncomfortable instead of choosing silence because it is easier for me.
 
 And I want you to know something else, something I hope you never again have to ask for: you will not have to beg me to be there. Not because I want to play some heroic character who saves everything, but because I finally understand that love is often much less dramatic than that. Sometimes it is answering. Sometimes it is checking in. Sometimes it is sitting quietly beside someone without trying to fix them. Sometimes it is staying patient when the other person has every reason to be guarded. I want to become the kind of person whose presence does not need to be requested every time the weather changes. If you need space, I will respect it. If you need silence, I will not punish you for it. If you need me, I will be there. And if you do not have the strength to ask, I will still care enough to notice.
 
@@ -1722,1023 +1078,324 @@ I would rather spend that lifetime learning how to reach the same light properly
 Because somewhere along the way, without asking permission and without giving me a sensible exit plan, you became the person my heart kept choosing and will be choosing forever.
 
 And apparently, for once in my life, I am not interested in teaching it otherwise. ❤️
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- ======================================================
-     SORRY IMAGE
-====================================================== -->
-
+<!-- SORRY IMAGE -->
 <section class="final-image-section">
-
     <div class="reveal center">
-
-        <img
-            id="sorryImage"
-            class="final-image"
-            alt="sorry">
-
+        <img id="sorryImage" class="final-image story-image" alt="sorry">
     </div>
-
 </section>
 
-
-<!-- ======================================================
-     SORRY MOMENT
-====================================================== -->
-
+<!-- SORRY MOMENT -->
 <section class="sorry-moment">
-
     <div class="reveal sorry-content">
-
-        <div class="eyebrow">
-            one last thing...
-        </div>
-
-        <h2 class="sorry-title">
-            SORRY
-        </h2>
-
-        <div class="prayer-hands">
-            🙏
-        </div>
-
-        <p class="sorry-subtitle">
-            dil se.
-        </p>
-
+        <div class="eyebrow">one last confession</div>
+        <h2 class="sorry-title">SORRY</h2>
+        <div class="prayer-hands">🙏</div>
+        <p class="sorry-subtitle">dil se... pure dil se.</p>
     </div>
-
 </section>
 
-
-<!-- ======================================================
-     WILL
-====================================================== -->
-
+<!-- WILL -->
 <section class="final-image-section">
-
     <div class="reveal center">
-
-        <img
-            id="willImage"
-            class="final-image"
-            alt="will">
-
+        <img id="willImage" class="final-image story-image" alt="will">
     </div>
-
 </section>
 
-
-<!-- ======================================================
-     END
-====================================================== -->
-
+<!-- END -->
 <section class="final-message-section">
-
     <div class="reveal center">
-
-        <div class="eyebrow">
-            the end
-        </div>
-
-        <h1 class="final-message">
-            this was all i wanted
-            to say and show
-        </h1>
-
-        <div class="final-small">
-            🌷
-        </div>
-
+        <div class="eyebrow">the end & a new beginning</div>
+        <h1 class="final-message">this was all i wanted<br>to say and show</h1>
+        <div class="final-small">🌷✨</div>
     </div>
-
 </section>
-
 
 </div>
 
-
 <!-- ======================================================
-     AUDIO
+     AUDIO ELEMENTS
 ====================================================== -->
-
-<audio
-    id="riaAudio"
-    preload="auto">
-</audio>
-
-<audio
-    id="yadAudio"
-    preload="auto">
-</audio>
-
+<audio id="riaAudio" preload="auto"></audio>
+<audio id="yadAudio" preload="auto"></audio>
 
 <script>
-
-
 /* =========================================================
-   MEDIA RESOLVER
+   MEDIA RESOLVER (Multi-extension fallback)
 ========================================================= */
-
 function findMedia(element, folder, filename, extensions) {
-
     let index = 0;
-
     function tryNext() {
-
         if (index >= extensions.length) {
-
-            console.warn(
-                "Could not find:",
-                folder + "/" + filename
-            );
-
+            console.warn("Could not find:", folder + "/" + filename);
             return;
         }
-
-        const extension =
-            extensions[index++];
-
-        const path =
-            "./" +
-            folder +
-            "/" +
-            filename +
-            "." +
-            extension;
-
+        const extension = extensions[index++];
+        const path = "./" + folder + "/" + filename + "." + extension;
 
         if (element.tagName === "IMG") {
-
-            const test =
-                new Image();
-
-            test.onload = function() {
-
-                element.src = path;
-
-            };
-
-            test.onerror =
-                tryNext;
-
+            const test = new Image();
+            test.onload = function() { element.src = path; };
+            test.onerror = tryNext;
             test.src = path;
-
         } else {
-
-            /*
-               IMPORTANT:
-               Use one error listener only.
-            */
-
             element.onerror = null;
-
             element.src = path;
-
-            element.addEventListener(
-                "error",
-                tryNext,
-                {
-                    once: true
-                }
-            );
-
+            element.addEventListener("error", tryNext, { once: true });
         }
-
     }
-
     tryNext();
 }
 
+const imageExtensions = ["png", "jpg", "jpeg", "webp"];
+const audioExtensions = ["mp3", "m4a", "wav", "ogg"];
+const videoExtensions = ["mp4", "webm", "mov"];
+
+findMedia(document.getElementById("img1"), "image", "tu kon h", imageExtensions);
+findMedia(document.getElementById("img2"), "image", "iska answer kar", imageExtensions);
+findMedia(document.getElementById("img3"), "image", "ye to ria", imageExtensions);
+findMedia(document.getElementById("welcomeImage"), "image", "welcome", imageExtensions);
+findMedia(document.getElementById("adhuriImage"), "image", "adhuri poem", imageExtensions);
+findMedia(document.getElementById("poemImage"), "image", "poem", imageExtensions);
+findMedia(document.getElementById("galaxyImage"), "image", "mirror galaxy", imageExtensions);
+findMedia(document.getElementById("sorryImage"), "image", "sorry", imageExtensions);
+findMedia(document.getElementById("willImage"), "image", "will", imageExtensions);
+
+findMedia(document.getElementById("ankheinVideo"), "video", "ankhein", videoExtensions);
+findMedia(document.getElementById("riaAudio"), "audio", "ria", audioExtensions);
+findMedia(document.getElementById("yadAudio"), "audio", "yad hai", audioExtensions);
 
 /* =========================================================
-   LOAD IMAGES
+   QUIZ LOGIC WITH GENTLE ANIMATIONS
 ========================================================= */
-
-const imageExtensions = [
-    "jpg",
-    "jpeg",
-    "png",
-    "webp"
-];
-
-
-findMedia(
-    document.getElementById("img1"),
-    "image",
-    "tu kon h",
-    imageExtensions
-);
-
-
-findMedia(
-    document.getElementById("img2"),
-    "image",
-    "iska answer kar",
-    imageExtensions
-);
-
-
-findMedia(
-    document.getElementById("img3"),
-    "image",
-    "ye to ria",
-    imageExtensions
-);
-
-
-findMedia(
-    document.getElementById("welcomeImage"),
-    "image",
-    "welcome",
-    imageExtensions
-);
-
-
-findMedia(
-    document.getElementById("adhuriImage"),
-    "image",
-    "adhuri poem",
-    imageExtensions
-);
-
-
-findMedia(
-    document.getElementById("poemImage"),
-    "image",
-    "poem",
-    imageExtensions
-);
-
-
-findMedia(
-    document.getElementById("galaxyImage"),
-    "image",
-    "mirror galaxy",
-    imageExtensions
-);
-
-
-findMedia(
-    document.getElementById("sorryImage"),
-    "image",
-    "sorry",
-    imageExtensions
-);
-
-
-findMedia(
-    document.getElementById("willImage"),
-    "image",
-    "will",
-    imageExtensions
-);
-
-
-/* =========================================================
-   LOAD VIDEO
-========================================================= */
-
-findMedia(
-    document.getElementById("ankheinVideo"),
-    "video",
-    "ankhein",
-    [
-        "mp4",
-        "webm"
-    ]
-);
-
-
-/* =========================================================
-   LOAD AUDIO
-========================================================= */
-
-findMedia(
-    document.getElementById("riaAudio"),
-    "audio",
-    "ria",
-    [
-        "mp3",
-        "m4a",
-        "wav",
-        "ogg"
-    ]
-);
-
-
-findMedia(
-    document.getElementById("yadAudio"),
-    "audio",
-    "yad hai",
-    [
-        "mp3",
-        "m4a",
-        "wav",
-        "ogg"
-    ]
-);
-
-
-/* =========================================================
-   QUIZ
-========================================================= */
-
 function checkAnswer(number) {
-
-    const input =
-        document.getElementById(
-            "answer" + number
-        );
-
-    const error =
-        document.getElementById(
-            "error" + number
-        );
-
-    const answer =
-        input.value
-            .trim()
-            .toLowerCase();
-
+    const input = document.getElementById("answer" + number);
+    const error = document.getElementById("error" + number);
+    const answer = input.value.trim().toLowerCase();
 
     if (number === 1) {
-
         if (answer === "priyanshu") {
-
-            transition(
-                "screen1",
-                "screen2"
-            );
-
+            transition("screen1", "screen2");
         } else {
-
-            error.textContent =
-                "hmmm... wrong answer 😭";
-
+            error.textContent = "hmmm... wrong answer 😭";
         }
     }
-
 
     if (number === 2) {
-
         if (answer === "mendarua") {
-
-            transition(
-                "screen2",
-                "screen3"
-            );
-
+            transition("screen2", "screen3");
         } else {
-
-            error.textContent =
-                "🐸 hint ko seriously lo...";
-
+            error.textContent = "🐸 hint ko seriously lo na...";
         }
     }
 
-
     if (number === 3) {
-
         if (answer === "betu") {
-
-            transition(
-                "screen3",
-                "screen4"
-            );
-
+            transition("screen3", "screen4");
         } else {
-
-            error.textContent =
-                "areyyy you definitely know this 😭";
-
+            error.textContent = "areyyy you definitely know this 😭";
         }
     }
 }
 
-
-/* =========================================================
-   SCREEN TRANSITION
-========================================================= */
-
 function transition(current, next) {
-
-    const currentElement =
-        document.getElementById(current);
-
-    const nextElement =
-        document.getElementById(next);
-
+    const currentElement = document.getElementById(current);
+    const nextElement = document.getElementById(next);
 
     currentElement.style.opacity = "0";
-
-    currentElement.style.transition =
-        "opacity .6s ease";
-
+    currentElement.style.transform = "translateY(-20px) scale(0.96)";
+    currentElement.style.transition = "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
 
     setTimeout(() => {
-
-        currentElement.classList.add(
-            "hidden"
-        );
-
-        nextElement.classList.remove(
-            "hidden"
-        );
-
+        currentElement.classList.add("hidden");
+        nextElement.classList.remove("hidden");
         nextElement.style.opacity = "0";
-
+        nextElement.style.transform = "translateY(20px) scale(0.96)";
 
         requestAnimationFrame(() => {
-
-            nextElement.style.transition =
-                "opacity .9s ease";
-
+            nextElement.style.transition = "all 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
             nextElement.style.opacity = "1";
-
+            nextElement.style.transform = "translateY(0) scale(1)";
         });
 
-
-        window.scrollTo({
-            top: 0,
-            behavior: "instant"
-        });
-
-
+        window.scrollTo({ top: 0, behavior: "instant" });
     }, 600);
 }
 
-
-/* =========================================================
-   ENTER KEY
-========================================================= */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        if (event.key !== "Enter")
-            return;
-
-
-        if (
-            !document
-                .getElementById("screen1")
-                .classList
-                .contains("hidden")
-        ) {
-
-            checkAnswer(1);
-
-        }
-
-        else if (
-            !document
-                .getElementById("screen2")
-                .classList
-                .contains("hidden")
-        ) {
-
-            checkAnswer(2);
-
-        }
-
-        else if (
-            !document
-                .getElementById("screen3")
-                .classList
-                .contains("hidden")
-        ) {
-
-            checkAnswer(3);
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   REVEAL OBSERVER
-========================================================= */
-
-const observer =
-    new IntersectionObserver(
-
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (
-                    entry.isIntersecting
-                ) {
-
-                    entry.target
-                        .classList
-                        .add("show");
-
-                }
-
-            });
-
-        },
-
-        {
-            threshold: .12
-        }
-
-    );
-
-
-/* =========================================================
-   START STORY
-========================================================= */
-
-function startStory() {
-
-    const screen4 =
-        document.getElementById(
-            "screen4"
-        );
-
-    const story =
-        document.getElementById(
-            "story"
-        );
-
-
-    screen4.classList.add(
-        "hidden"
-    );
-
-    story.classList.remove(
-        "hidden"
-    );
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "instant"
-    });
-
-
-    createPetals();
-
-
-    /*
-       Story was hidden before.
-       Now everything is visible and can
-       be observed correctly.
-    */
-
-    requestAnimationFrame(() => {
-
-        document
-            .querySelectorAll(
-                "#story .reveal"
-            )
-            .forEach(el => {
-
-                observer.unobserve(el);
-
-                observer.observe(el);
-
-            });
-
-
-        /*
-           Force paragraph calculation
-           after browser has calculated layout.
-        */
-
-        requestAnimationFrame(() => {
-
-            updateParagraph();
-
-        });
-
-    });
-
-}
-
-
-/* =========================================================
-   RIA SONG
-========================================================= */
-
-function playRia() {
-
-    const audio =
-        document.getElementById(
-            "riaAudio"
-        );
-
-    const status =
-        document.getElementById(
-            "riaStatus"
-        );
-
-
-    audio.play()
-        .then(() => {
-
-            status.textContent =
-                "🎵 playing...";
-
-
-            document
-                .getElementById(
-                    "tulips"
-                )
-                .classList
-                .add("active");
-
-        })
-        .catch(() => {
-
-            status.textContent =
-                "tap again to start the song 🎵";
-
-        });
-}
-
-
-/* =========================================================
-   YAD HAI
-========================================================= */
-
-function playYadHai() {
-
-    const audio =
-        document.getElementById(
-            "yadAudio"
-        );
-
-    const status =
-        document.getElementById(
-            "yadStatus"
-        );
-
-
-    audio.play()
-        .then(() => {
-
-            status.textContent =
-                "🎵 playing...";
-
-        })
-        .catch(() => {
-
-            status.textContent =
-                "tap again to play 🎵";
-
-        });
-}
-
-
-/* =========================================================
-   VIDEO
-========================================================= */
-
-const video =
-    document.getElementById(
-        "ankheinVideo"
-    );
-
-
-const videoObserver =
-    new IntersectionObserver(
-
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (
-                    entry.isIntersecting
-                ) {
-
-                    video
-                        .play()
-                        .catch(() => {});
-
-                } else {
-
-                    video.pause();
-
-                }
-
-            });
-
-        },
-
-        {
-            threshold: .45
-        }
-
-    );
-
-
-videoObserver.observe(video);
-
-
-/* =========================================================
-   SCROLL PARAGRAPH SETUP
-========================================================= */
-
-function setupParagraph() {
-
-    const paragraph =
-        document.getElementById(
-            "paragraph"
-        );
-
-    if (!paragraph)
-        return;
-
-
-    if (
-        paragraph.dataset.ready === "true"
-    ) {
-        return;
-    }
-
-
-    const text =
-        paragraph
-            .textContent
-            .replace(/\s+/g, " ")
-            .trim();
-
-
-    paragraph.innerHTML = "";
-
-
-    const words =
-        text.split(" ");
-
-
-    words.forEach(word => {
-
-        const span =
-            document.createElement(
-                "span"
-            );
-
-        span.className =
-            "word";
-
-        span.textContent =
-            word + " ";
-
-        paragraph.appendChild(
-            span
-        );
-
-    });
-
-
-    paragraph.dataset.ready =
-        "true";
-}
-
-
-/* =========================================================
-   SCROLL PARAGRAPH UPDATE
-========================================================= */
-
-function updateParagraph() {
-
-    const paragraph =
-        document.getElementById(
-            "paragraph"
-        );
-
-    if (!paragraph)
-        return;
-
-
-    const story =
-        document.getElementById(
-            "story"
-        );
-
-
-    /*
-       Do nothing while story is hidden.
-    */
-
-    if (
-        story.classList.contains(
-            "hidden"
-        )
-    ) {
-        return;
-    }
-
-
-    const rect =
-        paragraph.getBoundingClientRect();
-
-
-    const viewport =
-        window.innerHeight;
-
-
-    if (rect.height <= 0)
-        return;
-
-
-    /*
-       The paragraph starts becoming readable
-       as it enters the viewport.
-    */
-
-    const startPoint =
-        viewport * .90;
-
-
-    /*
-       Finish revealing after the paragraph
-       has travelled through most of viewport.
-    */
-
-    const endPoint =
-        -rect.height * .15;
-
-
-    const totalDistance =
-        startPoint - endPoint;
-
-
-    const progress =
-        (
-            startPoint - rect.top
-        ) / totalDistance;
-
-
-    const clamped =
-        Math.max(
-            0,
-            Math.min(
-                1,
-                progress
-            )
-        );
-
-
-    const words =
-        paragraph.querySelectorAll(
-            ".word"
-        );
-
-
-    const count =
-        Math.floor(
-            clamped * words.length
-        );
-
-
-    words.forEach(
-        (word, index) => {
-
-            if (
-                index < count
-            ) {
-
-                word.classList.add(
-                    "lit"
-                );
-
-            } else {
-
-                word.classList.remove(
-                    "lit"
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   SCROLL PERFORMANCE
-========================================================= */
-
-let paragraphTicking =
-    false;
-
-
-window.addEventListener(
-    "scroll",
-    () => {
-
-        if (
-            !paragraphTicking
-        ) {
-
-            window.requestAnimationFrame(
-                () => {
-
-                    updateParagraph();
-
-                    paragraphTicking =
-                        false;
-
-                }
-            );
-
-            paragraphTicking =
-                true;
-        }
-
-    },
-    {
-        passive: true
-    }
-);
-
-
-/* =========================================================
-   PETALS
-========================================================= */
-
-function createPetals() {
-
-    const container =
-        document.getElementById(
-            "petals"
-        );
-
-
-    if (
-        container.children.length > 0
-    ) {
-        return;
-    }
-
-
-    for (
-        let i = 0;
-        i < 22;
-        i++
-    ) {
-
-        const petal =
-            document.createElement(
-                "div"
-            );
-
-
-        petal.className =
-            "petal";
-
-
-        petal.style.left =
-            Math.random() * 100 + "%";
-
-
-        petal.style.animationDuration =
-            (8 + Math.random() * 8) + "s";
-
-
-        petal.style.animationDelay =
-            Math.random() * 10 + "s";
-
-
-        petal.style.opacity =
-            .2 + Math.random() * .4;
-
-
-        container.appendChild(
-            petal
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   INITIALIZE
-========================================================= */
-
-setupParagraph();
-
-requestAnimationFrame(() => {
-
-    updateParagraph();
-
+document.addEventListener("keydown", event => {
+    if (event.key !== "Enter") return;
+    if (!document.getElementById("screen1").classList.contains("hidden")) checkAnswer(1);
+    else if (!document.getElementById("screen2").classList.contains("hidden")) checkAnswer(2);
+    else if (!document.getElementById("screen3").classList.contains("hidden")) checkAnswer(3);
 });
 
+/* =========================================================
+   SCROLL REVEAL OBSERVER
+========================================================= */
+const observer = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+            }
+        });
+    },
+    { threshold: 0.12 }
+);
+
+function startStory() {
+    const screen4 = document.getElementById("screen4");
+    const story = document.getElementById("story");
+
+    screen4.classList.add("hidden");
+    story.classList.remove("hidden");
+
+    window.scrollTo({ top: 0, behavior: "instant" });
+    createPetals();
+
+    requestAnimationFrame(() => {
+        document.querySelectorAll("#story .reveal").forEach(el => {
+            observer.unobserve(el);
+            observer.observe(el);
+        });
+
+        requestAnimationFrame(() => {
+            updateParagraph();
+        });
+    });
+}
+
+/* =========================================================
+   AUDIO & VIDEO CONTROLS
+========================================================= */
+function playRia() {
+    const audio = document.getElementById("riaAudio");
+    const status = document.getElementById("riaStatus");
+
+    audio.play().then(() => {
+        status.textContent = "🎵 playing our sweet memory...";
+        document.getElementById("tulips").classList.add("active");
+    }).catch(() => {
+        status.textContent = "tap once more to start 🎵";
+    });
+}
+
+function playYadHai() {
+    const audio = document.getElementById("yadAudio");
+    const status = document.getElementById("yadStatus");
+
+    audio.play().then(() => {
+        status.textContent = "🎵 playing...";
+    }).catch(() => {
+        status.textContent = "tap once more to play 🎵";
+    });
+}
+
+const video = document.getElementById("ankheinVideo");
+const videoObserver = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                video.play().catch(() => {});
+            } else {
+                video.pause();
+            }
+        });
+    },
+    { threshold: 0.4 }
+);
+videoObserver.observe(video);
+
+/* =========================================================
+   PROGRESSIVE TEXT HIGHLIGHT SETUP
+========================================================= */
+function setupParagraph() {
+    const paragraph = document.getElementById("paragraph");
+    if (!paragraph || paragraph.dataset.ready === "true") return;
+
+    const text = paragraph.textContent.replace(/\s+/g, " ").trim();
+    paragraph.innerHTML = "";
+
+    const words = text.split(" ");
+    words.forEach(word => {
+        const span = document.createElement("span");
+        span.className = "word";
+        span.textContent = word + " ";
+        paragraph.appendChild(span);
+    });
+
+    paragraph.dataset.ready = "true";
+}
+
+function updateParagraph() {
+    const paragraph = document.getElementById("paragraph");
+    const story = document.getElementById("story");
+    if (!paragraph || story.classList.contains("hidden")) return;
+
+    const rect = paragraph.getBoundingClientRect();
+    const viewport = window.innerHeight;
+    if (rect.height <= 0) return;
+
+    const startPoint = viewport * 0.85;
+    const endPoint = -rect.height * 0.1;
+    const totalDistance = startPoint - endPoint;
+
+    const progress = (startPoint - rect.top) / totalDistance;
+    const clamped = Math.max(0, Math.min(1, progress));
+
+    const words = paragraph.querySelectorAll(".word");
+    const count = Math.floor(clamped * words.length);
+
+    words.forEach((word, index) => {
+        if (index < count) {
+            word.classList.add("lit");
+        } else {
+            word.classList.remove("lit");
+        }
+    });
+}
+
+let paragraphTicking = false;
+window.addEventListener("scroll", () => {
+    if (!paragraphTicking) {
+        window.requestAnimationFrame(() => {
+            updateParagraph();
+            paragraphTicking = false;
+        });
+        paragraphTicking = true;
+    }
+}, { passive: true });
+
+/* =========================================================
+   FLOATING SAKURA PETALS GENERATOR
+========================================================= */
+function createPetals() {
+    const container = document.getElementById("petals");
+    if (container.children.length > 0) return;
+
+    for (let i = 0; i < 28; i++) {
+        const petal = document.createElement("div");
+        petal.className = "petal";
+        petal.style.left = Math.random() * 100 + "%";
+        petal.style.animationDuration = (7 + Math.random() * 9) + "s";
+        petal.style.animationDelay = (Math.random() * 8) + "s";
+        petal.style.opacity = 0.25 + Math.random() * 0.5;
+        petal.style.transform = `scale(${0.6 + Math.random() * 0.6})`;
+        container.appendChild(petal);
+    }
+}
+
+/* =========================================================
+   INIT
+========================================================= */
+setupParagraph();
+requestAnimationFrame(() => {
+    updateParagraph();
+});
 </script>
 
 </body>
