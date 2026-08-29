@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title> acchaww </title>
+<title>accha betey🌷</title>
 
 <style>
 
@@ -89,7 +89,9 @@ body::before {
 }
 
 
-/* subtle paper grain */
+/* =========================================================
+   PAPER GRAIN
+========================================================= */
 
 body::after {
     content: "";
@@ -212,7 +214,7 @@ section {
 
 
 /* =========================================================
-   REVEAL ANIMATION
+   REVEAL
 ========================================================= */
 
 .reveal {
@@ -427,10 +429,6 @@ section {
 /* =========================================================
    STORY INTRO
 ========================================================= */
-
-.story {
-    position: relative;
-}
 
 .story-intro {
     min-height: 145vh;
@@ -760,6 +758,97 @@ section {
 
 
 /* =========================================================
+   EXTRA VIDEO SECTIONS
+========================================================= */
+
+.extra-video-section {
+    min-height: 125vh;
+
+    flex-direction: column;
+
+    padding: 100px 7vw;
+}
+
+.extra-video-wrap {
+    width: min(1050px, 92vw);
+
+    text-align: center;
+}
+
+.extra-video-frame {
+    width: 100%;
+
+    padding: 10px;
+
+    border-radius: 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.82),
+            rgba(235,192,198,.42)
+        );
+
+    box-shadow:
+        0 40px 100px rgba(78,51,48,.18),
+        inset 0 1px 0 rgba(255,255,255,.85);
+
+    backdrop-filter: blur(16px);
+}
+
+.extra-video {
+    display: block;
+
+    width: 100%;
+
+    max-height: 75vh;
+
+    object-fit: contain;
+
+    border-radius: 27px;
+
+    background: #332927;
+}
+
+.extra-video-caption {
+    margin: 38px auto;
+
+    width: min(900px, 90vw);
+
+    font-size: clamp(2.2rem, 5vw, 5rem);
+
+    line-height: 1.05;
+
+    color: #684946;
+
+    font-style: italic;
+
+    text-shadow:
+        0 8px 25px rgba(93,65,61,.12);
+}
+
+.extra-video-caption.above {
+    margin-top: 0;
+
+    margin-bottom: 38px;
+}
+
+.extra-video-caption::after {
+    content: "✦";
+
+    display: block;
+
+    margin-top: 20px;
+
+    font-size: 1.1rem;
+
+    font-style: normal;
+
+    color: rgba(190,113,132,.55);
+}
+
+
+/* =========================================================
    GALAXY
 ========================================================= */
 
@@ -776,6 +865,7 @@ section {
 
 .galaxy-image {
     width: min(1100px, 94vw);
+
     max-height: 78vh;
 
     object-fit: contain;
@@ -833,17 +923,6 @@ section {
     width: min(800px, 90vw);
 
     margin: auto;
-
-    /*
-       IMPORTANT:
-       This section itself is allowed to appear normally.
-       The old setup could leave the entire paragraph
-       hidden because #story started with display:none.
-    */
-
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
 }
 
 .paragraph {
@@ -854,19 +933,12 @@ section {
     text-align: center;
 
     color: #654d49;
+
+    opacity: 1;
 }
 
 .word {
-    display: inline;
-
-    /*
-       Visible even before scrolling.
-       Scrolling makes each word brighter.
-    */
-
-    opacity: .30;
-
-    filter: blur(1px);
+    opacity: .07;
 
     transition:
         opacity .35s ease,
@@ -890,6 +962,7 @@ section {
 
 .final-image {
     width: min(1000px, 93vw);
+
     max-height: 78vh;
 
     object-fit: contain;
@@ -898,154 +971,6 @@ section {
 
     box-shadow:
         0 50px 120px rgba(76,48,44,.22);
-}
-
-
-/* =========================================================
-   SORRY MOMENT
-========================================================= */
-
-.sorry-moment {
-    min-height: 90vh;
-
-    flex-direction: column;
-
-    text-align: center;
-
-    overflow: hidden;
-}
-
-.sorry-content {
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    width: 100%;
-}
-
-.sorry-title {
-    margin-top: 35px;
-
-    font-size: clamp(5rem, 17vw, 13rem);
-
-    line-height: .8;
-
-    font-weight: 700;
-
-    letter-spacing: -.055em;
-
-    color: #654541;
-
-    text-shadow:
-        0 15px 40px rgba(93,65,61,.14);
-
-    opacity: 0;
-
-    transform:
-        translateY(55px)
-        scale(.78);
-
-    filter: blur(12px);
-
-    transition:
-        opacity 1.2s cubic-bezier(.2,.8,.2,1),
-        transform 1.3s cubic-bezier(.2,.8,.2,1),
-        filter 1.2s ease;
-}
-
-.sorry-moment .reveal.show .sorry-title {
-    opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
-    filter: blur(0);
-}
-
-.prayer-hands {
-    margin-top: 60px;
-
-    font-size: clamp(4rem, 10vw, 8rem);
-
-    display: inline-block;
-
-    transform-origin: center bottom;
-
-    opacity: 0;
-
-    transform:
-        translateY(40px)
-        scale(.6)
-        rotate(-10deg);
-
-    filter: blur(10px);
-
-    transition:
-        opacity 1s ease .35s,
-        transform 1.2s cubic-bezier(.2,.8,.2,1) .35s,
-        filter 1s ease .35s;
-}
-
-.sorry-moment .reveal.show .prayer-hands {
-    opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1)
-        rotate(0deg);
-
-    filter: blur(0);
-
-    animation:
-        handsBreathe 2.8s ease-in-out 1.5s infinite;
-}
-
-@keyframes handsBreathe {
-
-    0%, 100% {
-        transform:
-            translateY(0)
-            scale(1)
-            rotate(0deg);
-    }
-
-    50% {
-        transform:
-            translateY(-10px)
-            scale(1.06)
-            rotate(2deg);
-    }
-}
-
-.sorry-subtitle {
-    margin-top: 25px;
-
-    font-size: clamp(1rem, 2vw, 1.35rem);
-
-    letter-spacing: .16em;
-
-    text-transform: uppercase;
-
-    color: #987570;
-
-    opacity: 0;
-
-    transform: translateY(20px);
-
-    transition:
-        opacity 1s ease .7s,
-        transform 1s ease .7s;
-}
-
-.sorry-moment .reveal.show .sorry-subtitle {
-    opacity: 1;
-
-    transform: translateY(0);
 }
 
 
@@ -1131,7 +1056,6 @@ section {
     .tulip::before,
     .tulip::after {
         width: 45px;
-
         height: 45px;
     }
 
@@ -1143,30 +1067,44 @@ section {
         top: -30px;
     }
 
+    .extra-video-section {
+        min-height: 105vh;
+
+        padding: 70px 20px;
+    }
+
+    .extra-video-frame {
+        padding: 7px;
+
+        border-radius: 25px;
+    }
+
+    .extra-video {
+        border-radius: 19px;
+
+        max-height: 65vh;
+    }
+
+    .extra-video-caption {
+        font-size: 2.5rem;
+
+        margin: 28px auto;
+    }
+
+    .extra-video-caption.above {
+        margin-bottom: 28px;
+    }
+
     .paragraph-section {
-        min-height: 220vh;
+        min-height: 180vh;
 
         padding-top: 18vh;
     }
 
     .paragraph {
-        font-size: 1.18rem;
+        font-size: 1.15rem;
 
         line-height: 2;
-    }
-
-    .sorry-moment {
-        min-height: 80vh;
-    }
-
-    .sorry-title {
-        font-size: 5.5rem;
-    }
-
-    .prayer-hands {
-        margin-top: 45px;
-
-        font-size: 5rem;
     }
 }
 
@@ -1175,7 +1113,6 @@ section {
 
 
 <body>
-
 
 <div class="petals" id="petals"></div>
 
@@ -1296,7 +1233,7 @@ section {
             alt="ye to ria">
 
         <h1 class="quiz-title">
-            ye to Ria lgri..
+            ye to Ria h
         </h1>
 
         <p class="question">
@@ -1402,7 +1339,7 @@ section {
         </div>
 
         <p class="poem-text">
-[Meeting you felt less like a coincidence and more like the multiverse correcting a glitch.
+Meeting you felt less like a coincidence and more like the multiverse correcting a glitch.
 You call us mirror galaxies; we're like two anomalies breaking physics by existing on the same frequency.
 Astral twins?
 Maybe.
@@ -1412,7 +1349,7 @@ Parallel stars?
 Yes.
 Two luminous singularities defying entropy by choosing not to drift apart.
 So here’s my quantum pulse, traveling faster than reason, colliding with yours as it was always meant to.
-~~~Kalua Bandar🥀]
+~~~Kalua Bandar🥀
         </p>
 
     </div>
@@ -1543,7 +1480,9 @@ So here’s my quantum pulse, traveling faster than reason, colliding with yours
 </section>
 
 
-<!-- VIDEO -->
+<!-- ======================================================
+     ANKHEIN VIDEO
+====================================================== -->
 
 <section class="video-section">
 
@@ -1562,8 +1501,7 @@ So here’s my quantum pulse, traveling faster than reason, colliding with yours
         </div>
 
         <div class="video-note">
-
-[Those eyes .....
+Those eyes .....
 spill light, still night...
 tilt time sideways, wrong-right,
 blink once...meanings collide,
@@ -1592,13 +1530,157 @@ And I...?
 I rhyme myself into their spell,
 can’t tell heaven... can’t tell hell...
 just drifting, dreaming, beautifully stuck,
-in eyes that rhyme...✨👁️]
-
+in eyes that rhyme...✨👁️
         </div>
 
         <p class="scroll-note">
             ↓ scroll down
         </p>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     EXTRA VIDEO 1
+====================================================== -->
+
+<section class="extra-video-section">
+
+    <div class="extra-video-wrap reveal">
+
+        <div class="extra-video-frame">
+
+            <video
+                id="mindVideo"
+                class="extra-video"
+                controls
+                playsinline
+                preload="metadata">
+            </video>
+
+        </div>
+
+        <h2 class="extra-video-caption">
+            This is you in my mind
+        </h2>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     EXTRA VIDEO 2
+====================================================== -->
+
+<section class="extra-video-section">
+
+    <div class="extra-video-wrap reveal">
+
+        <h2 class="extra-video-caption above">
+            this could be us btw
+        </h2>
+
+        <div class="extra-video-frame">
+
+            <video
+                id="oggyVideo"
+                class="extra-video"
+                controls
+                playsinline
+                preload="metadata">
+            </video>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     EXTRA VIDEO 3
+====================================================== -->
+
+<section class="extra-video-section">
+
+    <div class="extra-video-wrap reveal">
+
+        <div class="extra-video-frame">
+
+            <video
+                id="meWhenUVideo"
+                class="extra-video"
+                controls
+                playsinline
+                preload="metadata">
+            </video>
+
+        </div>
+
+        <h2 class="extra-video-caption">
+            Literally me when u
+        </h2>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     EXTRA VIDEO 4
+====================================================== -->
+
+<section class="extra-video-section">
+
+    <div class="extra-video-wrap reveal">
+
+        <div class="extra-video-frame">
+
+            <video
+                id="youVideo"
+                class="extra-video"
+                controls
+                playsinline
+                preload="metadata">
+            </video>
+
+        </div>
+
+        <h2 class="extra-video-caption">
+            this is how you appear in my mind btw
+        </h2>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+     EXTRA VIDEO 5
+====================================================== -->
+
+<section class="extra-video-section">
+
+    <div class="extra-video-wrap reveal">
+
+        <div class="extra-video-frame">
+
+            <video
+                id="booVideo"
+                class="extra-video"
+                controls
+                playsinline
+                preload="metadata">
+            </video>
+
+        </div>
+
+        <h2 class="extra-video-caption">
+            You my boo u my betuu bitttu cutu patootuu
+        </h2>
 
     </div>
 
@@ -1684,12 +1766,12 @@ in eyes that rhyme...✨👁️]
 
 
 <!-- ======================================================
-     APOLOGY PARAGRAPH
+     PARAGRAPH
 ====================================================== -->
 
 <section class="paragraph-section">
 
-    <div class="paragraph-wrap">
+    <div class="paragraph-wrap reveal">
 
         <div
             id="paragraph"
@@ -1730,9 +1812,7 @@ And apparently, for once in my life, I am not interested in teaching it otherwis
 </section>
 
 
-<!-- ======================================================
-     SORRY IMAGE
-====================================================== -->
+<!-- SORRY -->
 
 <section class="final-image-section">
 
@@ -1748,38 +1828,7 @@ And apparently, for once in my life, I am not interested in teaching it otherwis
 </section>
 
 
-<!-- ======================================================
-     SORRY MOMENT
-====================================================== -->
-
-<section class="sorry-moment">
-
-    <div class="reveal sorry-content">
-
-        <div class="eyebrow">
-            one last thing...
-        </div>
-
-        <h2 class="sorry-title">
-            SORRY
-        </h2>
-
-        <div class="prayer-hands">
-            🙏
-        </div>
-
-        <p class="sorry-subtitle">
-            dil se.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- ======================================================
-     WILL
-====================================================== -->
+<!-- WILL -->
 
 <section class="final-image-section">
 
@@ -1795,9 +1844,7 @@ And apparently, for once in my life, I am not interested in teaching it otherwis
 </section>
 
 
-<!-- ======================================================
-     END
-====================================================== -->
+<!-- END -->
 
 <section class="final-message-section">
 
@@ -1841,12 +1888,13 @@ And apparently, for once in my life, I am not interested in teaching it otherwis
 
 <script>
 
-
 /* =========================================================
    MEDIA RESOLVER
 ========================================================= */
 
 function findMedia(element, folder, filename, extensions) {
+
+    if (!element) return;
 
     let index = 0;
 
@@ -1862,8 +1910,7 @@ function findMedia(element, folder, filename, extensions) {
             return;
         }
 
-        const extension =
-            extensions[index++];
+        const extension = extensions[index++];
 
         const path =
             "./" +
@@ -1873,44 +1920,31 @@ function findMedia(element, folder, filename, extensions) {
             "." +
             extension;
 
-
         if (element.tagName === "IMG") {
 
-            const test =
-                new Image();
+            const test = new Image();
 
             test.onload = function() {
-
                 element.src = path;
-
             };
 
-            test.onerror =
-                tryNext;
+            test.onerror = tryNext;
 
             test.src = path;
 
         } else {
 
-            /*
-               IMPORTANT:
-               Use one error listener only.
-            */
-
-            element.onerror = null;
-
             element.src = path;
 
             element.addEventListener(
                 "error",
-                tryNext,
-                {
-                    once: true
-                }
+                function() {
+                    tryNext();
+                },
+                { once: true }
             );
 
         }
-
     }
 
     tryNext();
@@ -1918,7 +1952,7 @@ function findMedia(element, folder, filename, extensions) {
 
 
 /* =========================================================
-   LOAD IMAGES
+   IMAGE LOADING
 ========================================================= */
 
 const imageExtensions = [
@@ -1928,14 +1962,12 @@ const imageExtensions = [
     "webp"
 ];
 
-
 findMedia(
     document.getElementById("img1"),
     "image",
     "tu kon h",
     imageExtensions
 );
-
 
 findMedia(
     document.getElementById("img2"),
@@ -1944,14 +1976,12 @@ findMedia(
     imageExtensions
 );
 
-
 findMedia(
     document.getElementById("img3"),
     "image",
     "ye to ria",
     imageExtensions
 );
-
 
 findMedia(
     document.getElementById("welcomeImage"),
@@ -1960,14 +1990,12 @@ findMedia(
     imageExtensions
 );
 
-
 findMedia(
     document.getElementById("adhuriImage"),
     "image",
     "adhuri poem",
     imageExtensions
 );
-
 
 findMedia(
     document.getElementById("poemImage"),
@@ -1976,7 +2004,6 @@ findMedia(
     imageExtensions
 );
 
-
 findMedia(
     document.getElementById("galaxyImage"),
     "image",
@@ -1984,14 +2011,12 @@ findMedia(
     imageExtensions
 );
 
-
 findMedia(
     document.getElementById("sorryImage"),
     "image",
     "sorry",
     imageExtensions
 );
-
 
 findMedia(
     document.getElementById("willImage"),
@@ -2002,7 +2027,7 @@ findMedia(
 
 
 /* =========================================================
-   LOAD VIDEO
+   ANKHEIN VIDEO
 ========================================================= */
 
 findMedia(
@@ -2017,7 +2042,62 @@ findMedia(
 
 
 /* =========================================================
-   LOAD AUDIO
+   EXTRA VIDEOS
+========================================================= */
+
+findMedia(
+    document.getElementById("mindVideo"),
+    "video",
+    "me when u in my mind",
+    [
+        "mp4",
+        "webm"
+    ]
+);
+
+findMedia(
+    document.getElementById("oggyVideo"),
+    "video",
+    "oggy",
+    [
+        "mp4",
+        "webm"
+    ]
+);
+
+findMedia(
+    document.getElementById("meWhenUVideo"),
+    "video",
+    "me when u",
+    [
+        "mp4",
+        "webm"
+    ]
+);
+
+findMedia(
+    document.getElementById("youVideo"),
+    "video",
+    "you",
+    [
+        "mp4",
+        "webm"
+    ]
+);
+
+findMedia(
+    document.getElementById("booVideo"),
+    "video",
+    "boo",
+    [
+        "mp4",
+        "webm"
+    ]
+);
+
+
+/* =========================================================
+   AUDIO
 ========================================================= */
 
 findMedia(
@@ -2031,7 +2111,6 @@ findMedia(
         "ogg"
     ]
 );
-
 
 findMedia(
     document.getElementById("yadAudio"),
@@ -2053,19 +2132,15 @@ findMedia(
 function checkAnswer(number) {
 
     const input =
-        document.getElementById(
-            "answer" + number
-        );
+        document.getElementById("answer" + number);
 
     const error =
-        document.getElementById(
-            "error" + number
-        );
+        document.getElementById("error" + number);
 
     const answer =
         input.value
-            .trim()
-            .toLowerCase();
+        .trim()
+        .toLowerCase();
 
 
     if (number === 1) {
@@ -2081,7 +2156,6 @@ function checkAnswer(number) {
 
             error.textContent =
                 "hmmm... wrong answer 😭";
-
         }
     }
 
@@ -2099,7 +2173,6 @@ function checkAnswer(number) {
 
             error.textContent =
                 "🐸 hint ko seriously lo...";
-
         }
     }
 
@@ -2117,7 +2190,6 @@ function checkAnswer(number) {
 
             error.textContent =
                 "areyyy you definitely know this 😭";
-
         }
     }
 }
@@ -2135,25 +2207,18 @@ function transition(current, next) {
     const nextElement =
         document.getElementById(next);
 
-
     currentElement.style.opacity = "0";
 
     currentElement.style.transition =
         "opacity .6s ease";
 
-
     setTimeout(() => {
 
-        currentElement.classList.add(
-            "hidden"
-        );
+        currentElement.classList.add("hidden");
 
-        nextElement.classList.remove(
-            "hidden"
-        );
+        nextElement.classList.remove("hidden");
 
         nextElement.style.opacity = "0";
-
 
         requestAnimationFrame(() => {
 
@@ -2164,12 +2229,10 @@ function transition(current, next) {
 
         });
 
-
         window.scrollTo({
             top: 0,
             behavior: "instant"
         });
-
 
     }, 600);
 }
@@ -2183,15 +2246,12 @@ document.addEventListener(
     "keydown",
     event => {
 
-        if (event.key !== "Enter")
-            return;
-
+        if (event.key !== "Enter") return;
 
         if (
             !document
                 .getElementById("screen1")
-                .classList
-                .contains("hidden")
+                .classList.contains("hidden")
         ) {
 
             checkAnswer(1);
@@ -2201,8 +2261,7 @@ document.addEventListener(
         else if (
             !document
                 .getElementById("screen2")
-                .classList
-                .contains("hidden")
+                .classList.contains("hidden")
         ) {
 
             checkAnswer(2);
@@ -2212,8 +2271,7 @@ document.addEventListener(
         else if (
             !document
                 .getElementById("screen3")
-                .classList
-                .contains("hidden")
+                .classList.contains("hidden")
         ) {
 
             checkAnswer(3);
@@ -2225,106 +2283,37 @@ document.addEventListener(
 
 
 /* =========================================================
-   REVEAL OBSERVER
-========================================================= */
-
-const observer =
-    new IntersectionObserver(
-
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (
-                    entry.isIntersecting
-                ) {
-
-                    entry.target
-                        .classList
-                        .add("show");
-
-                }
-
-            });
-
-        },
-
-        {
-            threshold: .12
-        }
-
-    );
-
-
-/* =========================================================
    START STORY
 ========================================================= */
 
 function startStory() {
 
-    const screen4 =
-        document.getElementById(
-            "screen4"
-        );
+    document
+        .getElementById("screen4")
+        .classList.add("hidden");
 
-    const story =
-        document.getElementById(
-            "story"
-        );
-
-
-    screen4.classList.add(
-        "hidden"
-    );
-
-    story.classList.remove(
-        "hidden"
-    );
-
+    document
+        .getElementById("story")
+        .classList.remove("hidden");
 
     window.scrollTo({
         top: 0,
         behavior: "instant"
     });
 
-
     createPetals();
 
-
-    /*
-       Story was hidden before.
-       Now everything is visible and can
-       be observed correctly.
-    */
-
-    requestAnimationFrame(() => {
+    setTimeout(() => {
 
         document
-            .querySelectorAll(
-                "#story .reveal"
-            )
-            .forEach(el => {
+            .querySelectorAll("#story .reveal")
+            .forEach(el => observer.observe(el));
 
-                observer.unobserve(el);
+    }, 100);
 
-                observer.observe(el);
-
-            });
-
-
-        /*
-           Force paragraph calculation
-           after browser has calculated layout.
-        */
-
-        requestAnimationFrame(() => {
-
-            updateParagraph();
-
-        });
-
-    });
-
+    setTimeout(() => {
+        updateParagraph();
+    }, 300);
 }
 
 
@@ -2335,15 +2324,10 @@ function startStory() {
 function playRia() {
 
     const audio =
-        document.getElementById(
-            "riaAudio"
-        );
+        document.getElementById("riaAudio");
 
     const status =
-        document.getElementById(
-            "riaStatus"
-        );
-
+        document.getElementById("riaStatus");
 
     audio.play()
         .then(() => {
@@ -2351,13 +2335,9 @@ function playRia() {
             status.textContent =
                 "🎵 playing...";
 
-
             document
-                .getElementById(
-                    "tulips"
-                )
-                .classList
-                .add("active");
+                .getElementById("tulips")
+                .classList.add("active");
 
         })
         .catch(() => {
@@ -2376,15 +2356,10 @@ function playRia() {
 function playYadHai() {
 
     const audio =
-        document.getElementById(
-            "yadAudio"
-        );
+        document.getElementById("yadAudio");
 
     const status =
-        document.getElementById(
-            "yadStatus"
-        );
-
+        document.getElementById("yadStatus");
 
     audio.play()
         .then(() => {
@@ -2403,13 +2378,46 @@ function playYadHai() {
 
 
 /* =========================================================
-   VIDEO
+   REVEAL OBSERVER
 ========================================================= */
 
-const video =
-    document.getElementById(
-        "ankheinVideo"
+const observer =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target
+                        .classList
+                        .add("show");
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: .12
+        }
+
     );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(el => observer.observe(el));
+
+
+/* =========================================================
+   VIDEO AUTOPLAY WHEN VISIBLE
+========================================================= */
+
+const allVideos =
+    document.querySelectorAll("video");
 
 
 const videoObserver =
@@ -2419,17 +2427,16 @@ const videoObserver =
 
             entries.forEach(entry => {
 
-                if (
-                    entry.isIntersecting
-                ) {
+                const vid = entry.target;
 
-                    video
-                        .play()
+                if (entry.isIntersecting) {
+
+                    vid.play()
                         .catch(() => {});
 
                 } else {
 
-                    video.pause();
+                    vid.pause();
 
                 }
 
@@ -2444,30 +2451,21 @@ const videoObserver =
     );
 
 
-videoObserver.observe(video);
+allVideos.forEach(video => {
+    videoObserver.observe(video);
+});
 
 
 /* =========================================================
-   SCROLL PARAGRAPH SETUP
+   SCROLL PARAGRAPH
 ========================================================= */
 
 function setupParagraph() {
 
     const paragraph =
-        document.getElementById(
-            "paragraph"
-        );
+        document.getElementById("paragraph");
 
-    if (!paragraph)
-        return;
-
-
-    if (
-        paragraph.dataset.ready === "true"
-    ) {
-        return;
-    }
-
+    if (!paragraph) return;
 
     const text =
         paragraph
@@ -2475,151 +2473,76 @@ function setupParagraph() {
             .replace(/\s+/g, " ")
             .trim();
 
-
     paragraph.innerHTML = "";
-
 
     const words =
         text.split(" ");
 
-
     words.forEach(word => {
 
         const span =
-            document.createElement(
-                "span"
-            );
+            document.createElement("span");
 
-        span.className =
-            "word";
+        span.className = "word";
 
         span.textContent =
             word + " ";
 
-        paragraph.appendChild(
-            span
-        );
+        paragraph.appendChild(span);
 
     });
 
-
-    paragraph.dataset.ready =
-        "true";
 }
 
-
-/* =========================================================
-   SCROLL PARAGRAPH UPDATE
-========================================================= */
 
 function updateParagraph() {
 
     const paragraph =
-        document.getElementById(
-            "paragraph"
-        );
+        document.getElementById("paragraph");
 
-    if (!paragraph)
-        return;
-
-
-    const story =
-        document.getElementById(
-            "story"
-        );
-
-
-    /*
-       Do nothing while story is hidden.
-    */
-
-    if (
-        story.classList.contains(
-            "hidden"
-        )
-    ) {
-        return;
-    }
-
+    if (!paragraph) return;
 
     const rect =
         paragraph.getBoundingClientRect();
 
-
     const viewport =
         window.innerHeight;
 
-
-    if (rect.height <= 0)
-        return;
-
-
-    /*
-       The paragraph starts becoming readable
-       as it enters the viewport.
-    */
-
-    const startPoint =
-        viewport * .90;
-
-
-    /*
-       Finish revealing after the paragraph
-       has travelled through most of viewport.
-    */
-
-    const endPoint =
-        -rect.height * .15;
-
-
-    const totalDistance =
-        startPoint - endPoint;
-
-
     const progress =
         (
-            startPoint - rect.top
-        ) / totalDistance;
-
+            viewport * .72 -
+            rect.top
+        ) /
+        (
+            rect.height +
+            viewport * .5
+        );
 
     const clamped =
         Math.max(
             0,
-            Math.min(
-                1,
-                progress
-            )
+            Math.min(1, progress)
         );
-
 
     const words =
-        paragraph.querySelectorAll(
-            ".word"
-        );
-
+        paragraph
+            .querySelectorAll(".word");
 
     const count =
         Math.floor(
             clamped * words.length
         );
 
-
     words.forEach(
         (word, index) => {
 
-            if (
-                index < count
-            ) {
+            if (index < count) {
 
-                word.classList.add(
-                    "lit"
-                );
+                word.classList.add("lit");
 
             } else {
 
-                word.classList.remove(
-                    "lit"
-                );
+                word.classList.remove("lit");
 
             }
 
@@ -2629,38 +2552,9 @@ function updateParagraph() {
 }
 
 
-/* =========================================================
-   SCROLL PERFORMANCE
-========================================================= */
-
-let paragraphTicking =
-    false;
-
-
 window.addEventListener(
     "scroll",
-    () => {
-
-        if (
-            !paragraphTicking
-        ) {
-
-            window.requestAnimationFrame(
-                () => {
-
-                    updateParagraph();
-
-                    paragraphTicking =
-                        false;
-
-                }
-            );
-
-            paragraphTicking =
-                true;
-        }
-
-    },
+    updateParagraph,
     {
         passive: true
     }
@@ -2674,53 +2568,31 @@ window.addEventListener(
 function createPetals() {
 
     const container =
-        document.getElementById(
-            "petals"
-        );
+        document.getElementById("petals");
 
-
-    if (
-        container.children.length > 0
-    ) {
+    if (container.children.length > 0)
         return;
-    }
 
-
-    for (
-        let i = 0;
-        i < 22;
-        i++
-    ) {
+    for (let i = 0; i < 22; i++) {
 
         const petal =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
-
-        petal.className =
-            "petal";
-
+        petal.className = "petal";
 
         petal.style.left =
             Math.random() * 100 + "%";
 
-
         petal.style.animationDuration =
             (8 + Math.random() * 8) + "s";
-
 
         petal.style.animationDelay =
             Math.random() * 10 + "s";
 
-
         petal.style.opacity =
             .2 + Math.random() * .4;
 
-
-        container.appendChild(
-            petal
-        );
+        container.appendChild(petal);
 
     }
 
@@ -2733,11 +2605,7 @@ function createPetals() {
 
 setupParagraph();
 
-requestAnimationFrame(() => {
-
-    updateParagraph();
-
-});
+updateParagraph();
 
 </script>
 
