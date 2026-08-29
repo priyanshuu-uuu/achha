@@ -975,6 +975,19 @@ section {
 
 
 /* =========================================================
+   SORRY MOMENT
+========================================================= */
+.sorry-content{margin-top:55px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sorry-title{font-size:clamp(5rem,14vw,11rem);line-height:.82;letter-spacing:.04em;font-weight:700;font-style:italic;color:#654541;text-shadow:0 18px 35px rgba(87,55,50,.14);margin:0}
+.hands-wrap{margin-top:35px;width:150px;height:150px;display:grid;place-items:center;animation:handsFloat 3s ease-in-out infinite}
+.hands{font-size:6rem;line-height:1;filter:drop-shadow(0 15px 20px rgba(87,55,50,.16));transform-origin:center bottom;animation:handsFold 2.2s ease-in-out infinite}
+.sorry-note{margin-top:18px;font-size:clamp(1rem,2vw,1.25rem);letter-spacing:.16em;text-transform:uppercase;color:#96736d}
+@keyframes handsFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes handsFold{0%,100%{transform:rotate(-3deg) scale(1)}50%{transform:rotate(3deg) scale(1.08)}}
+.paragraph-wrap{position:relative;z-index:2}.paragraph{position:relative;opacity:1!important}
+@media(max-width:700px){.sorry-title{font-size:5.2rem}.hands{font-size:5rem}}
+
+/* =========================================================
    FINAL MESSAGE
 ========================================================= */
 
@@ -1813,18 +1826,15 @@ And apparently, for once in my life, I am not interested in teaching it otherwis
 
 
 <!-- SORRY -->
-
 <section class="final-image-section">
-
     <div class="reveal center">
-
-        <img
-            id="sorryImage"
-            class="final-image"
-            alt="sorry">
-
+        <img id="sorryImage" class="final-image" alt="sorry">
+        <div class="sorry-content">
+            <h2 class="sorry-title">SORRY</h2>
+            <div class="hands-wrap" aria-label="folded hands"><div class="hands">🙏</div></div>
+            <p class="sorry-note">I really mean it.</p>
+        </div>
     </div>
-
 </section>
 
 
@@ -2086,9 +2096,9 @@ findMedia(
 );
 
 findMedia(
-    document.getElementById("booVideo"),
+    document.getElementById("mybooVideo"),
     "video",
-    "my boo",
+    "boo",
     [
         "mp4",
         "webm"
@@ -2312,7 +2322,10 @@ function startStory() {
     }, 100);
 
     setTimeout(() => {
-        updateParagraph();
+        setupParagraph();
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => updateParagraph());
+        });
     }, 300);
 }
 
@@ -2459,106 +2472,57 @@ allVideos.forEach(video => {
 /* =========================================================
    SCROLL PARAGRAPH
 ========================================================= */
+let paragraphReady=false;
+let paragraphTicking=false;
 
-function setupParagraph() {
+function setupParagraph(){
+    const paragraph=document.getElementById("paragraph");
+    if(!paragraph||paragraphReady)return;
 
-    const paragraph =
-        document.getElementById("paragraph");
+    const text=paragraph.textContent.replace(/\s+/g," ").trim();
+    paragraph.innerHTML="";
 
-    if (!paragraph) return;
-
-    const text =
-        paragraph
-            .textContent
-            .replace(/\s+/g, " ")
-            .trim();
-
-    paragraph.innerHTML = "";
-
-    const words =
-        text.split(" ");
-
-    words.forEach(word => {
-
-        const span =
-            document.createElement("span");
-
-        span.className = "word";
-
-        span.textContent =
-            word + " ";
-
+    text.split(" ").forEach(word=>{
+        const span=document.createElement("span");
+        span.className="word";
+        span.textContent=word+" ";
         paragraph.appendChild(span);
-
     });
-
+    paragraphReady=true;
 }
 
+function updateParagraph(){
+    const paragraph=document.getElementById("paragraph");
+    const story=document.getElementById("story");
+    if(!paragraph||!story||story.classList.contains("hidden"))return;
 
-function updateParagraph() {
+    const words=paragraph.querySelectorAll(".word");
+    if(!words.length)return;
 
-    const paragraph =
-        document.getElementById("paragraph");
+    const rect=paragraph.getBoundingClientRect();
+    const viewport=window.innerHeight;
+    const start=viewport*.88;
+    const end=-rect.height*.12;
+    const progress=(start-rect.top)/Math.max(1,start-end);
+    const clamped=Math.max(0,Math.min(1,progress));
+    const count=Math.ceil(clamped*words.length);
 
-    if (!paragraph) return;
-
-    const rect =
-        paragraph.getBoundingClientRect();
-
-    const viewport =
-        window.innerHeight;
-
-    const progress =
-        (
-            viewport * .72 -
-            rect.top
-        ) /
-        (
-            rect.height +
-            viewport * .5
-        );
-
-    const clamped =
-        Math.max(
-            0,
-            Math.min(1, progress)
-        );
-
-    const words =
-        paragraph
-            .querySelectorAll(".word");
-
-    const count =
-        Math.floor(
-            clamped * words.length
-        );
-
-    words.forEach(
-        (word, index) => {
-
-            if (index < count) {
-
-                word.classList.add("lit");
-
-            } else {
-
-                word.classList.remove("lit");
-
-            }
-
-        }
-    );
-
+    words.forEach((word,index)=>{
+        word.classList.toggle("lit",index<count);
+    });
 }
 
+function requestParagraphUpdate(){
+    if(paragraphTicking)return;
+    paragraphTicking=true;
+    requestAnimationFrame(()=>{
+        updateParagraph();
+        paragraphTicking=false;
+    });
+}
 
-window.addEventListener(
-    "scroll",
-    updateParagraph,
-    {
-        passive: true
-    }
-);
+window.addEventListener("scroll",requestParagraphUpdate,{passive:true});
+window.addEventListener("resize",requestParagraphUpdate);
 
 
 /* =========================================================
@@ -2604,8 +2568,6 @@ function createPetals() {
 ========================================================= */
 
 setupParagraph();
-
-updateParagraph();
 
 </script>
 
